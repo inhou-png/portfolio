@@ -1,0 +1,11 @@
+Model Information:
+* title:	Lego Head
+* source:	https://sketchfab.com/3d-models/lego-head-b17cf025c3e647fc8ad9903bdade020a
+* author:	AlexTheBaBa (https://sketchfab.com/BaBaCorp)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Lego Head" (https://sketchfab.com/3d-models/lego-head-b17cf025c3e647fc8ad9903bdade020a) by AlexTheBaBa (https://sketchfab.com/BaBaCorp) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
