@@ -1,9 +1,126 @@
+'use client'
+
+import { useEffect } from 'react';
+
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
 import Image from 'next/image'
+
 
 //TESTE
 import face from '@/images/head-torta-gif.gif'
 
 export default function About() {
+
+
+    useEffect(() => {
+        let threeEl: any = document.querySelector(".three");
+        let aboutEl: any = document.querySelector(".about-media");
+
+        if (!threeEl) return;
+
+        const scene = new THREE.Scene();
+
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            1,
+            0.1,
+            1000
+        );
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setClearColor(0x000000, 0);
+
+        renderer.setSize(aboutEl.clientWidth, aboutEl.clientWidth);
+        threeEl.appendChild(renderer.domElement);
+
+        camera.position.set(1, 1, 5);
+
+        scene.add(new THREE.AmbientLight(0xffccff, 2));
+
+        const dirLight = new THREE.DirectionalLight(0xffccff, 2);
+        const dirLight2 = new THREE.DirectionalLight(0xfff000, 2);
+        const dirLight3 = new THREE.DirectionalLight(0xffcccc, 1);
+
+        dirLight.position.set(5, 5, 5);
+        dirLight2.position.set(-10, 0, 10);
+        dirLight3.position.set(-5, -2, 5);
+        scene.add(dirLight, dirLight2, dirLight3);
+
+        // const geometry = new THREE.BoxGeometry(1, 1, 1);
+        // const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        // const cube = new THREE.Mesh(geometry, material);
+        // scene.add(cube);
+
+        const loader = new GLTFLoader();
+
+        loader.load(
+            "/lego_head/scene.gltf",
+            (gltf) => {
+                const model = gltf.scene;
+
+                scene.add(model);
+
+                model.scale.set(0.04, 0.04, 0.04);
+                model.position.set(0, 0, 0);
+
+                const box = new THREE.Box3().setFromObject(model);
+                const center = box.getCenter(new THREE.Vector3());
+
+                model.position.sub(center);
+
+                console.log("Modelo carregado!");
+            },
+            (xhr) => {
+                if (xhr.total > 0) {
+                    const percent = (xhr.loaded / xhr.total) * 100;
+                    console.log(`Carregando: ${percent.toFixed(1)}%`);
+                } else {
+                    console.log(`Carregando: ${xhr.loaded} bytes`);
+                }
+            },
+            (error) => {
+                console.error("Erro ao carregar GLTF:", error);
+            }
+        );
+
+        // const controls = new OrbitControls(camera, renderer.domElement);
+        // controls.enableDamping = false;
+        // controls.enableZoom = false;
+        // controls.enablePan = false;
+
+        let mouseX: any = 0;
+        let mouseY: any = 0;
+
+        window.addEventListener("mousemove", (e) => {
+            mouseX = ((e.clientX / window.innerWidth) * 2 - 1) * -1;
+            mouseY = (-(e.clientY / window.innerHeight) * 2 + 1) * -1;
+        });
+
+        function animate() {
+            const intensity = 5;
+
+            camera.position.x += (mouseX * intensity - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * intensity - camera.position.y) * 0.05;
+
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+
+        renderer.setAnimationLoop(animate);
+
+        return () => {
+            renderer.dispose();
+            threeEl.removeChild(renderer.domElement);
+        };
+
+    }, []);
+
+
+
     return (
         <div className='min-h-screen flex justify-center items-center my-10 md:my-0 overflow-hidden'>
             <div className='flex flex-wrap justify-center items-center'>
@@ -24,9 +141,11 @@ export default function About() {
                     </div>
                 </div>
 
-                <div className='w-[90%] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center'>
-                    <Image alt='Face' src={face} className='w-[70%] h-auto md:w-[80%]' />
+                <div className='w-[90%] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media'>
+                    {/* <Image alt='Face' src={face} className='w-[70%] h-auto md:w-[80%]' /> */}
+                    <div className='three'></div>
                 </div>
+
             </div>
         </div>
     )

@@ -1,9 +1,5 @@
 'use client'
 
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-
-
 // import Image from 'next/image'
 import React, { useEffect, useState } from "react";
 
@@ -21,35 +17,6 @@ export default function Home() {
 
   //BACKGROUND TRANSITION (BLACK TO RGB CHOICE)
   useEffect(() => {
-
-    // const scene = new THREE.Scene();
-    // const loader = new GLTFLoader();
-    // const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-    // camera.position.z = 5;
-
-    // const renderer = new THREE.WebGLRenderer();
-    // renderer.setSize(window.innerWidth, window.innerHeight);
-    // document.body.appendChild(renderer.domElement);
-
-    // loader.load('../../public/lego_head/scene.gltf', function (gltf) {
-
-    //   scene.add(gltf.scene);
-
-    // }, undefined, function (error) {
-
-    //   console.error(error);
-
-    // });
-
-    // const geometry = new THREE.BoxGeometry(1, 1, 1);
-    // const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    // const cube = new THREE.Mesh(geometry, material);
-    // scene.add(cube);
-
-    // renderer.render(scene, camera);
-
-
     rgbColor.map((e, idx) => {
       let percent = ((rgbColor[idx] * 100) / rgbColor[0]);
       if (Math.floor(((window.scrollY / 10) * percent) / 100) > e) bgColor[idx] = e;
@@ -70,7 +37,6 @@ export default function Home() {
       setBgColor(bgColor);
     }
   });
-
 
   return (
     <main className={`bg-dark`} style={{ backgroundColor: `rgb(${bgColor})` }}>
