@@ -40,13 +40,14 @@ export default function About() {
 
         scene.add(new THREE.AmbientLight(0xffccff, 2));
 
-        const dirLight = new THREE.DirectionalLight(0xffccff, 2);
-        const dirLight2 = new THREE.DirectionalLight(0xfff000, 2);
-        const dirLight3 = new THREE.DirectionalLight(0xffcccc, 1);
+        const dirLight = new THREE.DirectionalLight(0xffccff, 0);
+        const dirLight2 = new THREE.DirectionalLight(0xfff000, 4);
+        // const dirLight3 = new THREE.DirectionalLight(0xfff000, 4);
+        const dirLight3 = new THREE.DirectionalLight(0xffcccc, 5);
 
         dirLight.position.set(5, 5, 5);
         dirLight2.position.set(-10, 0, 10);
-        dirLight3.position.set(-5, -2, 5);
+        dirLight3.position.set(10, -2, 20);
         scene.add(dirLight, dirLight2, dirLight3);
 
         // const geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -57,13 +58,13 @@ export default function About() {
         const loader = new GLTFLoader();
 
         loader.load(
-            "/lego_head/scene.gltf",
+            "/lego_head/Head11.glb",
             (gltf) => {
                 const model = gltf.scene;
 
                 scene.add(model);
 
-                model.scale.set(0.04, 0.04, 0.04);
+                model.scale.set(0.006, 0.006, 0.006);
                 model.position.set(0, 0, 0);
 
                 const box = new THREE.Box3().setFromObject(model);
@@ -120,9 +121,10 @@ export default function About() {
     }, []);
 
 
-
     return (
         <div className='min-h-screen flex justify-center items-center my-10 md:my-0 overflow-hidden'>
+
+
             <div className='flex flex-wrap justify-center items-center'>
                 <div className='text-gray-300 font-extralight w-[80%] md:w-[40%] order-2 md:order-1'>
                     <h1 className='mb-5 text-3xl md:text-4xl'>Um pouco sobre mim</h1>
@@ -131,15 +133,24 @@ export default function About() {
                             Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código.
                         </p>
 
-                        {/* <p className='mb-5'>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam sequi ipsum obcaecati beatae velit tenetur dolor saepe, provident laudantium vel nostrum porro aliquam inventore nesciunt eligendi labore officia debitis cum?
-                        </p> */}
-
                         <p>
                             Também tenho uma grande paixão por um bom design em geral (UI, web, tipografia, pixel art, animação, ilustrações isométricas, branding e assim por diante).
                         </p>
                     </div>
                 </div>
+
+
+                {/* <div className="card w-[80%] md:w-[40%] order-2 md:order-1 bg-[#ff66a3] border-[3px] border-[#000000] shadow-[12px_12px_0_#000000]">
+                    <div className="head font-[900] bg-[#ffffff] border-b-[3px] border-[#000000] p-[5px_12px] text-[28px]">Um pouco sobre mim</div>
+                    <div className="content p-[8px_12px] text-[20px] font-[600]">
+                        <p className='mb-5'>
+                            Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código.
+                        </p>
+                        <p>
+                            Também tenho uma grande paixão por um bom design em geral (UI, web, tipografia, pixel art, animação, ilustrações isométricas, branding e assim por diante).
+                        </p>
+                    </div>
+                </div> */}
 
                 <div className='w-[90%] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media'>
                     {/* <Image alt='Face' src={face} className='w-[70%] h-auto md:w-[80%]' /> */}
