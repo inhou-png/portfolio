@@ -9,4 +9,32 @@
     * {
         font-family: 'Montserrat', system-ui, sans-serif;
     }
+
+    *::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    *::-webkit-scrollbar-track {
+        border-radius: 100vh;
+        background: #f7f4ed;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: #e0cbcb;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+        background: #c0a0b9;
+    }
+}
+
+#pin {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: dashed 2px red;
+    border-bottom: dashed 2px red;
+    box-sizing: border-box;
 }

@@ -4,8 +4,9 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { Observer } from 'gsap/Observer';
 import { useGSAP } from '@gsap/react';
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, Observer);
 
 // import Image from 'next/image'
 import React, { useEffect, useState, useRef } from "react";
@@ -18,12 +19,10 @@ import About from '@/components/about/page'
 
 export default function Home() {
 
-  const main: any = useRef();
-  const smoother: any = useRef();
   const [offset, setOffset]: any = useState(0);
   const [bgColor, setBgColor] = useState([0, 0, 0]);
-  // const rgbColor = [56, 80, 126];
-  const rgbColor = [71, 55, 125];
+  const rgbColor = [56, 80, 126];
+  // const rgbColor = [71, 55, 125];
 
   //BACKGROUND TRANSITION (BLACK TO RGB CHOICE)
   useEffect(() => {
@@ -49,19 +48,94 @@ export default function Home() {
   });
 
 
-  useEffect(() => {
+  //GSAP start scroll smooth
+  useGSAP(() => {
     ScrollSmoother.create({
       smooth: 1,
       effects: true,
       normalizeScroll: false
     });
-  }, [])
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#pin",
+        start: "top top",
+        end: "+=4000px",
+        pin: true,
+        scrub: true,
+        markers: true,
+        onUpdate: (self) => {
+        }
+      },
+    });
+
+
+    //FIRST TIME
+    tl.to("#text-about", {
+      xPercent: -120,
+      opacity: 0,
+      ease: "power3.inOut"
+    }, 0.1);
+
+    tl.to(".three-head", {
+      // yPercent: -120,
+      scale: 0,
+      opacity: 0,
+      ease: "power3.inOut"
+    }, 0.1);
+
+    //SECOND TIME
+    tl.fromTo("#card-about", {
+      yPercent: 120,
+      opacity: 0,
+    }, {
+      yPercent: 0,
+      opacity: 1,
+      ease: "power3.inOut"
+    }, 0.1);
+    tl.fromTo(".three-pc", {
+      xPercent: 120,
+      opacity: 0,
+    }, {
+      xPercent: 0,
+      opacity: 1,
+      ease: "power3.inOut"
+    }, 0.1);
+
+
+    tl.to("#card-about", {
+      xPercent: -200,
+      scale: 2,
+      opacity: 1,
+      ease: "power3.inOut"
+    }, 0.9);
+    tl.to(".three-pc", {
+      // xPercent: -50,
+      x: () => (window.innerWidth / 4 - document.querySelector(".three-pc").offsetWidth / 5) * -1,
+      opacity: 1,
+      scale: 2,
+      ease: "power3.inOut"
+    }, 0.9);
+
+
+
+    // Observer.create({
+    //   type: "wheel,touch,pointer",
+    //   wheelSpeed: -1,
+    //   preventDefault: false,
+    //   // onDown: () => console.log("down"),
+    //   // onUp: () => console.log("up"),
+    //   tolerance: 10,
+    // });
+  }, []);
 
   return (
-    <main className={`bg-dark`} ref={main}>
-      <div id="smooth-content" style={{ backgroundColor: `rgb(${bgColor})` }}>
+    <main className={`bg-dark scrollbar`} >
+      <div id="smooth-content" className="scrollbar" style={{ backgroundColor: `rgb(${bgColor})` }}>
         <Intro />
-        <About />
+        <div id="pin">
+          <About />
+        </div>
         <Projects />
       </div>
       <FixedItems offset={offset} />

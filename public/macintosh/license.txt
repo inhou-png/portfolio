@@ -1,0 +1,11 @@
+Model Information:
+* title:	Macintosh Classic (1991)
+* source:	https://sketchfab.com/3d-models/macintosh-classic-1991-3b66e98d137d4a23aaa725ce0a8aec28
+* author:	Daniel O'Neil (https://sketchfab.com/doneil)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Macintosh Classic (1991)" (https://sketchfab.com/3d-models/macintosh-classic-1991-3b66e98d137d4a23aaa725ce0a8aec28) by Daniel O'Neil (https://sketchfab.com/doneil) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
