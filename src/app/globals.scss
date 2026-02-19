@@ -38,3 +38,13 @@
     border-bottom: dashed 2px red;
     box-sizing: border-box;
 }
+
+#test-os {
+    width: 100dvw;
+    height: 100dvh;
+    position: fixed;
+    background-color: black;
+    color: green;
+    inset: 0;
+    z-index: 99;
+}

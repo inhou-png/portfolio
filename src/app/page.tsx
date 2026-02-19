@@ -108,25 +108,24 @@ export default function Home() {
       scale: 2,
       opacity: 1,
       ease: "power3.inOut"
-    }, 0.9);
+    }, 1);
+
+    const threePcEl: any = document.querySelector(".three-pc");
     tl.to(".three-pc", {
-      // xPercent: -50,
-      x: () => (window.innerWidth / 4 - document.querySelector(".three-pc").offsetWidth / 5) * -1,
+      x: () => (window.innerWidth / 4 - threePcEl?.offsetWidth / 5) * -1,
       opacity: 1,
       scale: 2,
       ease: "power3.inOut"
-    }, 0.9);
+    }, 1);
 
 
+    tl.to(".three-pc",
+      {
+        yPercent: 125,
+        scale: 10,
+        ease: "power3.inOut"
+      }, ">");
 
-    // Observer.create({
-    //   type: "wheel,touch,pointer",
-    //   wheelSpeed: -1,
-    //   preventDefault: false,
-    //   // onDown: () => console.log("down"),
-    //   // onUp: () => console.log("up"),
-    //   tolerance: 10,
-    // });
   }, []);
 
   return (
@@ -136,7 +135,11 @@ export default function Home() {
         <div id="pin">
           <About />
         </div>
-        <Projects />
+
+        <div id='test-os'>
+          teste os
+        </div>
+        {/* <Projects /> */}
       </div>
       <FixedItems offset={offset} />
     </main>
