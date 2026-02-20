@@ -16,6 +16,7 @@ import FixedItems from '@/components/fixed-items/page'
 import Intro from '@/components/intro/page'
 import Projects from '@/components/projects/page'
 import About from '@/components/about/page'
+import System from "@/components/system/page";
 
 export default function Home() {
 
@@ -76,13 +77,14 @@ export default function Home() {
       xPercent: -120,
       opacity: 0,
       ease: "power3.inOut"
-    }, 0.1);
+    }, 0.2);
     tl.to(".three-head", {
       // yPercent: -120,
       scale: 0,
       opacity: 0,
       ease: "power3.inOut"
-    }, 0.1);
+    }, 0.2);
+
 
     //SECOND TIME
     tl.fromTo("#card-about", {
@@ -92,7 +94,7 @@ export default function Home() {
       yPercent: 0,
       opacity: 1,
       ease: "power3.inOut"
-    }, 0.1);
+    }, 0.2);
     tl.fromTo(".three-pc", {
       xPercent: 120,
       opacity: 0,
@@ -100,33 +102,66 @@ export default function Home() {
       xPercent: 0,
       opacity: 1,
       ease: "power3.inOut"
-    }, 0.1);
+    }, 0.2);
     tl.to("#card-about", {
       xPercent: -200,
       scale: 2,
       opacity: 1,
       ease: "power3.inOut"
-    }, 1);
+    }, 0.8);
     const threePcEl: any = document.querySelector(".three-pc");
     tl.to(".three-pc", {
       x: () => (window.innerWidth / 4 - threePcEl?.offsetWidth / 5) * -1,
       opacity: 1,
       scale: 2,
       ease: "power3.inOut"
-    }, 1);
+    }, 0.8);
     tl.to(".three-pc",
       {
         yPercent: 125,
         scale: 10,
-        ease: "power3.inOut"
+        ease: "none",
+        duration: 0.2
       }, ">");
 
 
     //SYSTEM OS
+    const macLoader: any = gsap.to("#mac-loader", {
+      scale: 0.8,
+      yoyo: true,
+      repeat: -1,
+      duration: 1,
+      ease: "power1.inOut",
+      paused: true,
+      opacity: 1,
+    });
+
     tl.to("#test-os", {
-      backgroundColor: "blue",
+      opacity: 1,
+      display: "block",
       ease: "none",
-      duration:0
+      duration: 0,
+      onComplete: () => {
+        gsap.set("#desktop", {opacity: 0});
+        const bootTl = gsap.timeline();
+
+        bootTl
+          .add(() => macLoader.play())
+
+          .to({}, { duration: 2 }) // espera 2s
+
+          .add(() => macLoader.pause())
+
+          .to("#mac-loader", { opacity: 0, duration: 0.5 })
+
+          .to("#mac-welcome", { opacity: 1, duration: 0.5 })
+
+          .to({}, { duration: 2 }) // espera 2s
+
+          .to("#mac-welcome", { opacity: 0, duration: 0.5 })
+
+          .to("#desktop", { opacity: 1, duration: 0.5 });
+      }
     }, ">");
 
 
@@ -139,17 +174,12 @@ export default function Home() {
         <div id="pin">
           <About />
         </div>
-
-        
         {/* <Projects /> */}
       </div>
 
-        <div id="after-pin">
-          <div id='test-os'>
-            teste os
-          </div>
-        </div>
-
+      <div id='test-os'>
+        <System />
+      </div>
 
       <FixedItems offset={offset} />
     </main>
