@@ -56,18 +56,19 @@ export default function Home() {
       normalizeScroll: false
     });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#pin",
-        start: "top top",
-        end: "+=4000px",
-        pin: true,
-        scrub: true,
-        markers: true,
-        onUpdate: (self) => {
-        }
-      },
-    });
+    const tl = gsap.timeline();
+
+    const triggerTl = ScrollTrigger.create({
+      trigger: "#pin",
+      start: "top top",
+      end: "+=4000px",
+      pin: true,
+      scrub: true,
+      markers: true,
+      animation: tl,
+      onUpdate: (self) => {
+      }
+    })
 
 
     //FIRST TIME
@@ -76,7 +77,6 @@ export default function Home() {
       opacity: 0,
       ease: "power3.inOut"
     }, 0.1);
-
     tl.to(".three-head", {
       // yPercent: -120,
       scale: 0,
@@ -101,15 +101,12 @@ export default function Home() {
       opacity: 1,
       ease: "power3.inOut"
     }, 0.1);
-
-
     tl.to("#card-about", {
       xPercent: -200,
       scale: 2,
       opacity: 1,
       ease: "power3.inOut"
     }, 1);
-
     const threePcEl: any = document.querySelector(".three-pc");
     tl.to(".three-pc", {
       x: () => (window.innerWidth / 4 - threePcEl?.offsetWidth / 5) * -1,
@@ -117,14 +114,21 @@ export default function Home() {
       scale: 2,
       ease: "power3.inOut"
     }, 1);
-
-
     tl.to(".three-pc",
       {
         yPercent: 125,
         scale: 10,
         ease: "power3.inOut"
       }, ">");
+
+
+    //SYSTEM OS
+    tl.to("#test-os", {
+      backgroundColor: "blue",
+      ease: "none",
+      duration:0
+    }, ">");
+
 
   }, []);
 
@@ -136,11 +140,17 @@ export default function Home() {
           <About />
         </div>
 
-        <div id='test-os'>
-          teste os
-        </div>
+        
         {/* <Projects /> */}
       </div>
+
+        <div id="after-pin">
+          <div id='test-os'>
+            teste os
+          </div>
+        </div>
+
+
       <FixedItems offset={offset} />
     </main>
   )

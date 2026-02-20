@@ -275,7 +275,6 @@ export default function About() {
                     {/* <Image alt='Face' src={face} className='w-[70%] h-auto md:w-[80%]' /> */}
                     <div className='three-pc'></div>
                 </div>
-
             </div>
         </div>
     )
