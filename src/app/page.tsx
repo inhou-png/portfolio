@@ -5,8 +5,9 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { Observer } from 'gsap/Observer';
+import { Draggable } from 'gsap/Draggable';
 import { useGSAP } from '@gsap/react';
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, Observer);
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, Observer, Draggable);
 
 // import Image from 'next/image'
 import React, { useEffect, useState, useRef } from "react";
@@ -49,7 +50,7 @@ export default function Home() {
   });
 
 
-  //GSAP start scroll smooth
+  //GSAP
   useGSAP(() => {
     ScrollSmoother.create({
       smooth: 1,
@@ -142,7 +143,7 @@ export default function Home() {
       ease: "none",
       duration: 0,
       onComplete: () => {
-        gsap.set("#desktop", {opacity: 0});
+        gsap.set("#desktop", { opacity: 0 });
         const bootTl = gsap.timeline();
 
         bootTl
@@ -165,6 +166,25 @@ export default function Home() {
     }, ">");
 
 
+    //DRAG ITEMS DESKTOP
+    Draggable.create(".drag-item", {
+      type: "x,y",
+      bounds: ".drag-zone",
+      onDragStart: function () {
+        console.log(this.target);
+        gsap.set(this.target.querySelector("span"), {
+          background: "black",
+          color: "white"
+        });
+      },
+      onDragEnd: function () {
+        console.log(this.target);
+        gsap.set(this.target.querySelector("span"), {
+          background: "white",
+          color: "black"
+        });
+      }
+    });
   }, []);
 
   return (

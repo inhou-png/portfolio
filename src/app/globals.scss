@@ -5,9 +5,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
+// @font-face {
+//   font-family: chicago; /* set name */
+//   src: url(/public/fonts/chicago/ChicagoFLF.ttf) format('truetype'); /* url of the font */
+// }
+/* Typo */
 @font-face {
-  font-family: chicago; /* set name */
-  src: url(/public/fonts/chicago/ChicagoFLF.ttf) format('truetype'); /* url of the font */
+    font-family: "chicago";
+    src: url("//db.onlinewebfonts.com/t/1a243397695904f6f56e490ffd77a9cb.woff2") format("woff2");
+    src: url("//db.onlinewebfonts.com/t/1a243397695904f6f56e490ffd77a9cb.eot?#iefix") format("embedded-opentype"),
+        url("//db.onlinewebfonts.com/t/1a243397695904f6f56e490ffd77a9cb.eot"),
+        url("//db.onlinewebfonts.com/t/1a243397695904f6f56e490ffd77a9cb.woff") format("woff"),
+        url("//db.onlinewebfonts.com/t/1a243397695904f6f56e490ffd77a9cb.ttf") format("truetype"),
+        url("//db.onlinewebfonts.com/t/1a243397695904f6f56e490ffd77a9cb.svg#ChicagoFLF") format("svg");
+}
+
+@font-face {
+    font-family: "Geneva";
+    src: url("//db.onlinewebfonts.com/t/5ef60dc8370b330aa40e0c874bda45aa.woff2") format("woff2");
+    src: url("//db.onlinewebfonts.com/t/5ef60dc8370b330aa40e0c874bda45aa.eot?#iefix") format("embedded-opentype"),
+        url("//db.onlinewebfonts.com/t/5ef60dc8370b330aa40e0c874bda45aa.eot"),
+        url("//db.onlinewebfonts.com/t/5ef60dc8370b330aa40e0c874bda45aa.woff") format("woff"),
+        url("//db.onlinewebfonts.com/t/5ef60dc8370b330aa40e0c874bda45aa.ttf") format("truetype"),
+        url("//db.onlinewebfonts.com/t/5ef60dc8370b330aa40e0c874bda45aa.svg#Geneva") format("svg");
 }
 
 @layer base {

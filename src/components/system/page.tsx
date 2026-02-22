@@ -16,7 +16,38 @@ export default function System() {
             </div>
 
             <div id="desktop">
-                <div className="header"></div>
+                <div className="header">
+                    <ul>
+                        <li>File</li>
+                        <li>Edit</li>
+                        <li>View</li>
+                        <li>Special</li>
+                    </ul>
+                </div>
+
+                <div className="drag-zone">
+                    <div className="drag-item">
+                        <figure id="folder" className="icon folder">
+                            <svg width="60" viewBox="0 0 47 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="1" y="6" width="45" height="29" rx="1.5" fill="white" stroke="black" />
+                                <path d="M7.41421 1.58579L3 6H22L18.0959 1.66207C17.7166 1.24064 17.1762 1 16.6093 1H8.82843C8.29799 1 7.78929 1.21071 7.41421 1.58579Z" fill="white" stroke="black" />
+                            </svg>
+                        </figure>
+
+                        <span>Projetos Web</span>
+                    </div>
+
+                    <div className="drag-item">
+                        <figure id="folder" className="icon folder">
+                            <svg width="60" viewBox="0 0 47 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="1" y="6" width="45" height="29" rx="1.5" fill="white" stroke="black" />
+                                <path d="M7.41421 1.58579L3 6H22L18.0959 1.66207C17.7166 1.24064 17.1762 1 16.6093 1H8.82843C8.29799 1 7.78929 1.21071 7.41421 1.58579Z" fill="white" stroke="black" />
+                            </svg>
+                        </figure>
+
+                        <span>Projetos2</span>
+                    </div>
+                </div>
             </div>
         </div>
     )
