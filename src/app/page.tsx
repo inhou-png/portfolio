@@ -49,7 +49,6 @@ export default function Home() {
     }
   });
 
-
   //GSAP
   useGSAP(() => {
     ScrollSmoother.create({

@@ -47,6 +47,35 @@ export default function System() {
 
                         <span>Projetos2</span>
                     </div>
+
+                    <div className="window">
+                        <div className="header-window">
+                            <div className="window-bars">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <button className="window-btn"></button>
+
+                            <div className="window-title">
+                                <span>Projetos</span>
+                            </div>
+
+                            <button className="window-btn"></button>
+
+                        </div>
+                        <div className="content">
+                            <div></div>
+                            <div className="scroll"></div>
+                        </div>
+                        <div className="footer">
+                            <div className="scroll"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -13,92 +13,93 @@ import Image from 'next/image'
 import face from '@/images/head-torta-gif.gif'
 
 export default function About() {
-
+    let intervalId: any = useRef(null);
 
     //LEGO HEAD
     useEffect(() => {
-        let threeEl: any = document.querySelector(".three-head");
-        let aboutEl: any = document.querySelector(".about-media-head");
+        const threeEl: any = document.querySelector(".three-head");
+        const aboutEl: any = document.querySelector(".about-media-head");
 
         if (!threeEl) return;
 
         const scene = new THREE.Scene();
 
-        const camera = new THREE.PerspectiveCamera(
-            75,
-            1,
-            0.1,
-            1000
-        );
+        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+        camera.position.set(1, 1, 5);
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setClearColor(0x000000, 0);
-
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(aboutEl.clientWidth, aboutEl.clientWidth);
         threeEl.appendChild(renderer.domElement);
 
-        camera.position.set(1, 1, 5);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 2.5);
+        scene.add(ambientLight);
 
-        scene.add(new THREE.AmbientLight(0xffccff, 2));
+        const keyLight = new THREE.DirectionalLight(0xffffff, 4);
+        keyLight.position.set(5, 8, 5);
+        scene.add(keyLight);
 
-        const dirLight = new THREE.DirectionalLight(0xffccff, 0);
-        const dirLight2 = new THREE.DirectionalLight(0xfff000, 4);
-        // const dirLight3 = new THREE.DirectionalLight(0xfff000, 4);
-        const dirLight3 = new THREE.DirectionalLight(0xffcccc, 5);
+        const fillLight = new THREE.DirectionalLight(0xffffff, 3);
+        fillLight.position.set(-3, 2, 5);
+        scene.add(fillLight);
 
-        dirLight.position.set(5, 5, 5);
-        dirLight2.position.set(-10, 0, 10);
-        dirLight3.position.set(10, -2, 20);
-        scene.add(dirLight, dirLight2, dirLight3);
+        const topLight = new THREE.DirectionalLight(0xffffff, 2);
+        topLight.position.set(0, 10, 0);
+        scene.add(topLight);
 
-        // const geometry = new THREE.BoxGeometry(1, 1, 1);
-        // const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        // const cube = new THREE.Mesh(geometry, material);
-        // scene.add(cube);
+        let mouseX = 0;
+        let mouseY = 0;
+
+        const onMouseMove = (e: MouseEvent) => {
+            mouseX = ((e.clientX / window.innerWidth) * 2 - 1) * -1;
+            mouseY = (-(e.clientY / window.innerHeight) * 2 + 1) * -1;
+        };
+
+        window.addEventListener("mousemove", onMouseMove);
 
         const loader = new GLTFLoader();
 
-        loader.load(
-            "/lego_head/Head11.glb",
-            (gltf) => {
-                const model = gltf.scene;
+        const textureLoader = new THREE.TextureLoader();
+        const textures = [
+            // textureLoader.load("/Head/face1.jpeg"),
+            // textureLoader.load("/Head/face4.jpeg"),
+            // textureLoader.load("/Head/face1.jpeg"),
+            // textureLoader.load("/Head/face3.jpeg"),
+            // textureLoader.load("/Head/face2.jpeg"),
+            textureLoader.load("/Head/face5.jpeg"),
+            textureLoader.load("/Head/face6.jpeg"),
+            textureLoader.load("/Head/face7.jpeg"),
+        ];
 
-                scene.add(model);
+        textures.forEach((t) => {
+            t.flipY = false;
+            t.colorSpace = THREE.SRGBColorSpace;
+        });
 
-                model.scale.set(0.006, 0.006, 0.006);
-                model.position.set(0, 0, 0);
+        loader.load("/Head/Head.gltf", (gltf) => {
+            console.log("intervalId.current", intervalId.current);
+            clearInterval(intervalId.current);
 
-                const box = new THREE.Box3().setFromObject(model);
-                const center = box.getCenter(new THREE.Vector3());
+            const model = gltf.scene;
+            scene.add(model);
 
-                model.position.sub(center);
+            model.scale.set(0.006, 0.006, 0.006);
 
-                console.log("Modelo carregado!");
-            },
-            (xhr) => {
-                if (xhr.total > 0) {
-                    const percent = (xhr.loaded / xhr.total) * 100;
-                    console.log(`Carregando: ${percent.toFixed(1)}%`);
-                } else {
-                    console.log(`Carregando: ${xhr.loaded} bytes`);
-                }
-            },
-            (error) => {
-                console.error("Erro ao carregar GLTF:", error);
-            }
-        );
+            const box = new THREE.Box3().setFromObject(model);
+            const center = box.getCenter(new THREE.Vector3());
+            model.position.sub(center);
 
-        // const controls = new OrbitControls(camera, renderer.domElement);
-        // controls.enableDamping = false;
-        // controls.enableZoom = false;
-        // controls.enablePan = false;
+            let indexTexture = 0;
 
-        let mouseX: any = 0;
-        let mouseY: any = 0;
+            intervalId.current = setInterval(() => {
+                model.traverse((obj: any) => {
+                    if (obj.isMesh && obj.material?.name === "CorDePele2") {
+                        obj.material.map = textures[indexTexture];
+                        obj.material.needsUpdate = true;
+                    }
+                });
 
-        window.addEventListener("mousemove", (e) => {
-            mouseX = ((e.clientX / window.innerWidth) * 2 - 1) * -1;
-            mouseY = (-(e.clientY / window.innerHeight) * 2 + 1) * -1;
+                indexTexture = (indexTexture + 1) % textures.length;
+            }, 3000);
         });
 
         function animate() {
@@ -108,17 +109,21 @@ export default function About() {
             camera.position.y += (mouseY * intensity - camera.position.y) * 0.05;
 
             camera.lookAt(0, 0, 0);
-
             renderer.render(scene, camera);
         }
 
         renderer.setAnimationLoop(animate);
 
         return () => {
-            renderer.dispose();
-            threeEl.removeChild(renderer.domElement);
-        };
+            window.removeEventListener("mousemove", onMouseMove);
 
+            renderer.setAnimationLoop(null);
+            renderer.dispose();
+
+            if (renderer.domElement && threeEl.contains(renderer.domElement)) {
+                threeEl.removeChild(renderer.domElement);
+            }
+        };
     }, []);
 
     //MACINTOSH
