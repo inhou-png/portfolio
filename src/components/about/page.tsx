@@ -12,7 +12,7 @@ import Image from 'next/image'
 //TESTE
 import face from '@/images/head-torta-gif.gif'
 
-export default function About() {
+export default function About({ setModelComputer, setModelHead }: any) {
     let intervalId: any = useRef(null);
 
     //LEGO HEAD
@@ -60,11 +60,6 @@ export default function About() {
 
         const textureLoader = new THREE.TextureLoader();
         const textures = [
-            // textureLoader.load("/Head/face1.jpeg"),
-            // textureLoader.load("/Head/face4.jpeg"),
-            // textureLoader.load("/Head/face1.jpeg"),
-            // textureLoader.load("/Head/face3.jpeg"),
-            // textureLoader.load("/Head/face2.jpeg"),
             textureLoader.load("/Head/face5.jpeg"),
             textureLoader.load("/Head/face6.jpeg"),
             textureLoader.load("/Head/face7.jpeg"),
@@ -80,6 +75,9 @@ export default function About() {
             clearInterval(intervalId.current);
 
             const model = gltf.scene;
+
+            setModelHead(gltf.scene);
+
             scene.add(model);
 
             model.scale.set(0.006, 0.006, 0.006);
@@ -227,11 +225,10 @@ export default function About() {
     return (
         <div id="about" className='min-h-screen flex justify-center items-center my-10 md:my-0 overflow-hidden'>
 
-
             <div className='flex flex-wrap justify-center items-center'>
-                <div id="text-about" className='text-gray-300 font-extralight w-[80%] md:w-[40%] order-2 md:order-1'>
-                    <h1 className='mb-5 text-3xl md:text-4xl'>Um pouco sobre mim</h1>
-                    <div className='font-serif leading-relaxed'>
+                <div id="text-about" className='text-gray-300 w-[80%] md:w-[40%] order-2 md:order-1'>
+                    <h1 className='mb-5 text-3xl md:text-4xl font-bold'>Um pouco sobre mim</h1>
+                    <div className='font-serif leading-relaxed text-lg'>
                         <p className='mb-5'>
                             Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código.
                         </p>

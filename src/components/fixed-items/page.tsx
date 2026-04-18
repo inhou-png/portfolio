@@ -11,17 +11,24 @@ import Sun_icon from '@/icons/sol-Icon.png'
 import Moon_icon from '@/icons/lua-Icon.png'
 
 export default function Fixed({ offset }: any) {
-    // const [motion, setMotion]: any = useState(true);
-    const scroll: any = useRef();
-
+    const scroll: any = useRef(null);
     useEffect(() => {
-        offset > 0 ? scroll.current.classList.add('opacity-0') : scroll.current.classList.remove('opacity-0');
-    })
+        const handleScroll = () => {
+            if (!scroll.current) return;
 
-    // function butn_mode() {
-    //     setMotion(!motion)
-    //     console.log('motion:',motion)
-    // }
+            if (window.scrollY > 10) {
+                scroll.current.style.display = "none";
+            } else {
+                scroll.current.style.display = "block";
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     return (
         <div className='fixed w-full flex justify-center bottom-[1.25rem] left-[1.25rem]'>

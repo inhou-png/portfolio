@@ -10,8 +10,11 @@ import Waving_Hand from '@/icons/waving-hand.png'
 
 //TESTE
 import IntroGif from '@/images/gigpcdia.gif'
+import { useRef, useEffect } from 'react'
 
 export default function Intro() {
+   
+
     return (
         <div className='min-h-screen flex justify-center items-center overflow-hidden px-0 md:px-20'>
             <div className='text-gray-500 flex md:flex-nowrap flex-wrap md:justify-between justify-center md:w-auto w-[90%] '>

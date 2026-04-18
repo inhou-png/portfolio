@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={`${montserrat.className} h-full relative`}>
+      <body className={`${montserrat.className} h-full relative bg-black`}>
         {children}
         <Footer />
       </body>

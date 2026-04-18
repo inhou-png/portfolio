@@ -20,34 +20,37 @@ import About from '@/components/about/page'
 import System from "@/components/system/page";
 
 export default function Home() {
+  const [modelHead, setModelHead]: any = useState(null);
+  const [modelComputer, setModelComputer]: any = useState(null);
 
-  const [offset, setOffset]: any = useState(0);
-  const [bgColor, setBgColor] = useState([0, 0, 0]);
-  const rgbColor = [56, 80, 126];
+  // const [offset, setOffset]: any = useState(0);
+  // const [bgColor, setBgColor] = useState([0, 0, 0]);
+  // const rgbColor = [10, 60, 155];
   // const rgbColor = [71, 55, 125];
+  // const rgbColor = [56, 80, 126];
 
   //BACKGROUND TRANSITION (BLACK TO RGB CHOICE)
-  useEffect(() => {
-    rgbColor.map((e, idx) => {
-      let percent = ((rgbColor[idx] * 100) / rgbColor[0]);
-      if (Math.floor(((window.scrollY / 10) * percent) / 100) > e) bgColor[idx] = e;
-      else bgColor[idx] = (idx == 1 || idx == 2) ? Math.floor(((window.scrollY / 10) * percent) / 100) : Math.floor(window.scrollY / 10);
-    })
-    setOffset(window.scrollY)
-    setBgColor(bgColor);
-  }, []);
+  // useEffect(() => {
+  //   rgbColor.map((e, idx) => {
+  //     let percent = ((rgbColor[idx] * 100) / rgbColor[0]);
+  //     if (Math.floor(((window.scrollY / 10) * percent) / 100) > e) bgColor[idx] = e;
+  //     else bgColor[idx] = (idx == 1 || idx == 2) ? Math.floor(((window.scrollY / 10) * percent) / 100) : Math.floor(window.scrollY / 10);
+  //   })
+  //   setOffset(window.scrollY)
+  //   setBgColor(bgColor);
+  // }, []);
 
-  useEffect(() => {
-    window.onscroll = () => {
-      rgbColor.map((e, idx) => {
-        let percent = ((rgbColor[idx] * 100) / rgbColor[0]);
-        if (Math.floor(((window.scrollY / 10) * percent) / 100) > e) bgColor[idx] = e;
-        else bgColor[idx] = (idx == 1 || idx == 2) ? Math.floor(((window.scrollY / 10) * percent) / 100) : Math.floor(window.scrollY / 10);
-      })
-      setOffset(window.scrollY)
-      setBgColor(bgColor);
-    }
-  });
+  // useEffect(() => {
+  //   window.onscroll = () => {
+  //     rgbColor.map((e, idx) => {
+  //       let percent = ((rgbColor[idx] * 100) / rgbColor[0]);
+  //       if (Math.floor(((window.scrollY / 10) * percent) / 100) > e) bgColor[idx] = e;
+  //       else bgColor[idx] = (idx == 1 || idx == 2) ? Math.floor(((window.scrollY / 10) * percent) / 100) : Math.floor(window.scrollY / 10);
+  //     })
+  //     setOffset(window.scrollY)
+  //     setBgColor(bgColor);
+  //   }
+  // });
 
   //GSAP
   useGSAP(() => {
@@ -58,8 +61,18 @@ export default function Home() {
     });
 
     const tl = gsap.timeline();
+    const tlBack = gsap.timeline();
 
-    const triggerTl = ScrollTrigger.create({
+    ScrollTrigger.create({
+      start: "top top",
+      // end: "+=4000px",
+      pin: true,
+      scrub: true,
+      markers: true,
+      animation: tlBack,
+    })
+
+    ScrollTrigger.create({
       trigger: "#pin",
       start: "top top",
       end: "+=4000px",
@@ -71,6 +84,11 @@ export default function Home() {
       }
     })
 
+    //background
+    tlBack.to("body", {
+      backgroundColor: "rgb(30, 45, 73)",
+    }, 0);
+
 
     //FIRST TIME
     tl.to("#text-about", {
@@ -78,12 +96,21 @@ export default function Home() {
       opacity: 0,
       ease: "power3.inOut"
     }, 0.2);
+
     tl.to(".three-head", {
-      // yPercent: -120,
-      scale: 0,
-      opacity: 0,
-      ease: "power3.inOut"
+      // yPercent: 120,
+      xPercent: -120,
+      // scale: 50,
+      // opacity: 0,
+      rotate: 360,
+      ease: "power3.inOut",
+      onStart: () => {
+        //trocar face da cabeça de lego
+        console.log("modelHead", modelHead);
+      }
     }, 0.2);
+
+
 
 
     //SECOND TIME
@@ -95,6 +122,7 @@ export default function Home() {
       opacity: 1,
       ease: "power3.inOut"
     }, 0.2);
+
     tl.fromTo(".three-pc", {
       xPercent: 120,
       opacity: 0,
@@ -103,12 +131,14 @@ export default function Home() {
       opacity: 1,
       ease: "power3.inOut"
     }, 0.2);
+
     tl.to("#card-about", {
       xPercent: -200,
       scale: 2,
       opacity: 1,
       ease: "power3.inOut"
     }, 0.8);
+
     const threePcEl: any = document.querySelector(".three-pc");
     tl.to(".three-pc", {
       x: () => (window.innerWidth / 4 - threePcEl?.offsetWidth / 5) * -1,
@@ -184,14 +214,15 @@ export default function Home() {
         });
       }
     });
-  }, []);
+
+  });
 
   return (
-    <main className={`bg-dark scrollbar`} >
-      <div id="smooth-content" className="scrollbar" style={{ backgroundColor: `rgb(${bgColor})` }}>
+    <main className={`scrollbar`}>
+      <div id="smooth-content" className="scrollbar">
         <Intro />
         <div id="pin">
-          <About />
+          <About setModelComputer={setModelComputer} setModelHead={setModelHead} />
         </div>
         {/* <Projects /> */}
       </div>
@@ -200,7 +231,7 @@ export default function Home() {
         <System />
       </div>
 
-      <FixedItems offset={offset} />
+      <FixedItems />
     </main>
   )
 }

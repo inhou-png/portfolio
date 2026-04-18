@@ -4,7 +4,7 @@ const nextConfig = {
         unoptimized: true
     },
     output: "export",  // <=== enables static export
-    reactStrictMode: true
+    reactStrictMode: false
 }
 
 module.exports = nextConfig
