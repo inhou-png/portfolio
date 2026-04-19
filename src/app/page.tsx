@@ -10,7 +10,7 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, Observer, Draggable);
 
 // import Image from 'next/image'
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, use } from "react";
 
 //COMPONENTS
 import FixedItems from '@/components/fixed-items/page'
@@ -22,7 +22,7 @@ import System from "@/components/system/page";
 export default function Home() {
   const [modelHead, setModelHead]: any = useState(null);
   const [modelComputer, setModelComputer]: any = useState(null);
-
+  const refMain: any = useRef(null);
   // const [offset, setOffset]: any = useState(0);
   // const [bgColor, setBgColor] = useState([0, 0, 0]);
   // const rgbColor = [10, 60, 155];
@@ -84,9 +84,23 @@ export default function Home() {
       }
     })
 
-    //background
-    tlBack.to("body", {
-      backgroundColor: "rgb(30, 45, 73)",
+    // //background
+    const proxy = { progress: 0 };
+    tlBack.to(proxy, {
+      progress: 1,
+      onUpdate() {
+        const offset = proxy.progress * 2 - 1;
+        const el = refMain.current!;
+
+        // cada ponto do degradê mapeia offset -1→0→+1
+        // p=0 → tudo preto | p=0.5 → degradê | p=1 → tudo azul
+        const p = proxy.progress;
+        const x0 = Math.max(0, -offset) * 100;           // onde o preto termina (%)
+        const x1 = Math.min(1, 1 - offset) * 100;        // onde o azul começa (%)
+        // const rgbColor = [56, 80, 126];
+
+        el.style.background = `linear-gradient(to bottom,rgb(0,0,0) ${x0}%,rgb(3,8,30) ${x0 + (x1 - x0) * 0.05}%,rgb(30,45,73) 100%)`;
+      },
     }, 0);
 
 
@@ -98,11 +112,11 @@ export default function Home() {
     }, 0.2);
 
     tl.to(".three-head", {
-      // yPercent: 120,
-      xPercent: -120,
+      yPercent: 120,
+      // xPercent: -120,
       // scale: 50,
-      // opacity: 0,
-      rotate: 360,
+      opacity: 0,
+      // rotate: 360,
       ease: "power3.inOut",
       onStart: () => {
         //trocar face da cabeça de lego
@@ -218,7 +232,12 @@ export default function Home() {
   });
 
   return (
-    <main className={`scrollbar`}>
+    <main className={`scrollbar`} ref={refMain} style={{
+      position: "fixed",
+      inset: 0,
+      zIndex: -1,
+      background: "#000",
+    }}>
       <div id="smooth-content" className="scrollbar">
         <Intro />
         <div id="pin">
