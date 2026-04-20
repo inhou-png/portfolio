@@ -84,7 +84,7 @@ export default function Home() {
       }
     })
 
-    // //background
+    //background
     const proxy = { progress: 0 };
     tlBack.to(proxy, {
       progress: 1,
@@ -124,7 +124,18 @@ export default function Home() {
       }
     }, 0.2);
 
+    tl.fromTo("#background-projects", {
+      width: "0%",
+      height: "100vh",
+      position: "absolute",
+      display: "block",
+      backgroundColor: "#fff",
+    }, {
+      position: "absolute",
+      width: "100%",
+    }, 0.2);
 
+    
 
 
     //SECOND TIME

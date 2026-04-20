@@ -34,13 +34,14 @@ export default function About({ setModelComputer, setModelHead }: any) {
         const tl = gsap.timeline();
 
         ScrollTrigger.create({
-            // trigger: "#about",
             start: "top top",
-            // pin: true,
             scrub: true,
+            // trigger: "#about",
+            // pin: true,
+            // end: "+=4000px",
             // markers: true,
             animation: tl,
-        })
+        });
 
         tl.fromTo(
             "#marker",
@@ -282,8 +283,9 @@ export default function About({ setModelComputer, setModelHead }: any) {
 
     return (
         <div id="about" className='min-h-screen flex justify-center items-center my-10 md:my-0 overflow-hidden'>
+            <div id='background-projects' className='hidden'></div>
 
-            <div className='flex flex-wrap justify-center items-center'>
+            <div id="person" className='flex flex-wrap justify-center items-center'>
                 <div id="text-about" className='text-gray-300 w-[80%] md:w-[40%] order-2 md:order-1'>
                     <h1 className="mb-5 text-3xl md:text-4xl font-bold relative inline-block">
                         {/* Marca texto animado */}
@@ -316,8 +318,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
                 </div>
             </div>
 
-
-            <div className='absolute flex flex-wrap justify-center items-center'>
+            <div id="projects" className='absolute flex flex-wrap justify-center items-center'>
                 <div
                     id="card-about"
                     className="w-[85%] md:w-[45%] order-2 md:order-1 border-[3px] border-white bg-black p-0"
@@ -412,7 +413,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
 
                 </div>
 
-                <div id="3d-pc" className='w-[90%] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-pc'>
+                <div id="3d-pc" className='w-[500px] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-pc'>
                     {/* <Image alt='Face' src={face} className='w-[70%] h-auto md:w-[80%]' /> */}
                     <div className='three-pc'></div>
                 </div>
