@@ -9,10 +9,10 @@ import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import { Observer } from 'gsap/Observer';
-import { Draggable } from 'gsap/Draggable';
+// import { Observer } from 'gsap/Observer';
+// import { Draggable } from 'gsap/Draggable';
 import { SplitText } from 'gsap/SplitText';
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, Observer, Draggable, SplitText);
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 
 import Image from 'next/image'
 

@@ -23,34 +23,6 @@ export default function Home() {
   const [modelHead, setModelHead]: any = useState(null);
   const [modelComputer, setModelComputer]: any = useState(null);
   const refMain: any = useRef(null);
-  // const [offset, setOffset]: any = useState(0);
-  // const [bgColor, setBgColor] = useState([0, 0, 0]);
-  // const rgbColor = [10, 60, 155];
-  // const rgbColor = [71, 55, 125];
-  // const rgbColor = [56, 80, 126];
-
-  //BACKGROUND TRANSITION (BLACK TO RGB CHOICE)
-  // useEffect(() => {
-  //   rgbColor.map((e, idx) => {
-  //     let percent = ((rgbColor[idx] * 100) / rgbColor[0]);
-  //     if (Math.floor(((window.scrollY / 10) * percent) / 100) > e) bgColor[idx] = e;
-  //     else bgColor[idx] = (idx == 1 || idx == 2) ? Math.floor(((window.scrollY / 10) * percent) / 100) : Math.floor(window.scrollY / 10);
-  //   })
-  //   setOffset(window.scrollY)
-  //   setBgColor(bgColor);
-  // }, []);
-
-  // useEffect(() => {
-  //   window.onscroll = () => {
-  //     rgbColor.map((e, idx) => {
-  //       let percent = ((rgbColor[idx] * 100) / rgbColor[0]);
-  //       if (Math.floor(((window.scrollY / 10) * percent) / 100) > e) bgColor[idx] = e;
-  //       else bgColor[idx] = (idx == 1 || idx == 2) ? Math.floor(((window.scrollY / 10) * percent) / 100) : Math.floor(window.scrollY / 10);
-  //     })
-  //     setOffset(window.scrollY)
-  //     setBgColor(bgColor);
-  //   }
-  // });
 
   //GSAP
   useGSAP(() => {
@@ -126,16 +98,24 @@ export default function Home() {
 
     tl.fromTo("#background-projects", {
       width: "0%",
-      height: "100vh",
+      // borderRadius: "100% 100% 0 0",
+      borderRadius: "100%",
+      height: "0vh",
       position: "absolute",
+      bottom: 0,
       display: "block",
-      backgroundColor: "#fff",
-    }, {
-      position: "absolute",
-      width: "100%",
-    }, 0.2);
+      // backgroundColor: "#fff",
+      background: "radial-gradient(circle at 50% 130%, hsla(295, 70%, 40%, 0.55) 0%, hsla(295, 70%, 40%, 0.28) 35%, transparent 60%), radial-gradient(circle at 50% 88%,  hsla(316, 85%, 55%, 1) 0%, hsla(316, 85%, 55%, 0.70) 40%, transparent 80%),hsl(330, 75%, 88%)",
 
-    
+      scale: 0
+    }, {
+      height: "100vh",
+      // borderRadius: "0 0 0 0",
+      position: "absolute",
+      background: "radial-gradient(circle at 50% 62%, hsla(178, 82%, 60%, 0.70) 0%, hsla(178, 82%, 60%, 0.42) 30%, transparent 44%),radial-gradient(circle at 50% 80%, hsla(278, 70%, 35%, 0.80) 0%, hsla(278, 70%, 35%, 0.40) 35%, transparent 68%),radial-gradient(circle at 50% 62%, hsla(300, 90%, 50%, 1)    0%, hsla(300, 90%, 50%, 0.70) 40%, transparent 90%),hsl(315, 70%, 82%)",
+      width: "100vh",
+      scale: 4
+    }, 0.2);
 
 
     //SECOND TIME
