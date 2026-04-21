@@ -318,14 +318,13 @@ export default function About({ setModelComputer, setModelHead }: any) {
                 </div>
             </div>
 
-            <div id="projects" className='absolute flex flex-wrap justify-center items-center'>
+            {/* <div id="projects" className='absolute flex flex-wrap justify-center items-center'>
                 <div
                     id="card-about"
                     className="w-[85%] md:w-[45%] order-2 md:order-1 border-[3px] border-white bg-black p-0"
                     style={{ imageRendering: "pixelated", boxShadow: "6px 6px 0px #ff66a3" }}
                 >
 
-                    {/* Header */}
                     <div className="flex items-center justify-between border-b-[3px] border-white px-4 py-2">
                         <div className="flex gap-2">
                             <span className="block h-3 w-3 border-[2px] border-white bg-[#ff66a3]" />
@@ -337,9 +336,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
                         </p>
                     </div>
 
-                    {/* Avatar pixel + nome */}
                     <div className="flex items-center gap-4 border-b-[3px] border-white/20 px-4 py-4">
-                        {/* Pixel avatar */}
                         <div
                             className="h-14 w-14 flex-shrink-0 border-[3px] border-white"
                             style={{
@@ -376,7 +373,6 @@ export default function About({ setModelComputer, setModelHead }: any) {
                         </div>
                     </div>
 
-                    {/* Conteúdo principal */}
                     <div className="px-4 py-5">
                         <p className="mb-4 font-mono text-[13px] leading-[1.8] text-white/80">
                             Crio soluções limpas e reutilizáveis com foco em React, TypeScript e
@@ -384,7 +380,6 @@ export default function About({ setModelComputer, setModelHead }: any) {
                             por UI, tipografia, pixel art, animação e branding.
                         </p>
 
-                        {/* Stats pixel */}
                         <div className="mb-5 grid grid-cols-3 gap-[2px] border-[2px] border-white/20">
                             {[
                                 { label: "anos xp", value: "3+" },
@@ -398,7 +393,6 @@ export default function About({ setModelComputer, setModelHead }: any) {
                             ))}
                         </div>
 
-                        {/* Stack */}
                         <div className="flex flex-wrap gap-[4px]">
                             {["React", "TypeScript", "Next.js", "Tailwind", "GSAP"].map((tech) => (
                                 <span
@@ -414,10 +408,9 @@ export default function About({ setModelComputer, setModelHead }: any) {
                 </div>
 
                 <div id="3d-pc" className='w-[500px] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-pc'>
-                    {/* <Image alt='Face' src={face} className='w-[70%] h-auto md:w-[80%]' /> */}
                     <div className='three-pc'></div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

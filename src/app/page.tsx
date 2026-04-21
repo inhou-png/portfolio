@@ -78,16 +78,16 @@ export default function Home() {
 
     //FIRST TIME
     tl.to("#text-about", {
-      xPercent: -120,
-      opacity: 0,
+      xPercent: -150,
+      // opacity: 0,
       ease: "power3.inOut"
     }, 0.2);
 
     tl.to(".three-head", {
-      yPercent: 120,
+      yPercent: 150,
       // xPercent: -120,
       // scale: 50,
-      opacity: 0,
+      // opacity: 0,
       // rotate: 360,
       ease: "power3.inOut",
       onStart: () => {
@@ -102,17 +102,19 @@ export default function Home() {
       borderRadius: "100%",
       height: "0vh",
       position: "absolute",
-      bottom: 0,
+      bottom: -100,
+      right: 0,
       display: "block",
       // backgroundColor: "#fff",
-      background: "radial-gradient(circle at 50% 130%, hsla(295, 70%, 40%, 0.55) 0%, hsla(295, 70%, 40%, 0.28) 35%, transparent 60%), radial-gradient(circle at 50% 88%,  hsla(316, 85%, 55%, 1) 0%, hsla(316, 85%, 55%, 0.70) 40%, transparent 80%),hsl(330, 75%, 88%)",
+      backgroundColor: "#000",
+      // background: "radial-gradient(circle at 150% 150%, hsla(295, 70%, 40%, 0.55) 0%, hsla(295, 70%, 40%, 0.28) 0%, transparent 0%), radial-gradient(circle at 150% 150%,  hsla(316, 85%, 55%, 1) 0%, hsla(316, 85%, 55%, 0.70) 40%, transparent 80%), transparent",
+      // background: "radial-gradient(circle at 50% 130%, hsla(295, 70%, 40%, 0.55) 0%, hsla(295, 70%, 40%, 0.28) 35%, transparent 60%), radial-gradient(circle at 50% 88%,  hsla(316, 85%, 55%, 1) 0%, hsla(316, 85%, 55%, 0.70) 40%, transparent 80%),hsl(330, 75%, 88%)",
+      // background: "radial-gradient(circle at 50% 62%, hsla(178, 82%, 60%, 0.70) 0%, hsla(178, 82%, 60%, 0.42) 30%, transparent 44%),radial-gradient(circle at 50% 80%, hsla(278, 70%, 35%, 0.80) 0%, hsla(278, 70%, 35%, 0.40) 35%, transparent 68%),radial-gradient(circle at 50% 62%, hsla(300, 90%, 50%, 1)    0%, hsla(300, 90%, 50%, 0.70) 40%, transparent 90%),hsl(315, 70%, 82%)",
 
       scale: 0
     }, {
       height: "100vh",
-      // borderRadius: "0 0 0 0",
       position: "absolute",
-      background: "radial-gradient(circle at 50% 62%, hsla(178, 82%, 60%, 0.70) 0%, hsla(178, 82%, 60%, 0.42) 30%, transparent 44%),radial-gradient(circle at 50% 80%, hsla(278, 70%, 35%, 0.80) 0%, hsla(278, 70%, 35%, 0.40) 35%, transparent 68%),radial-gradient(circle at 50% 62%, hsla(300, 90%, 50%, 1)    0%, hsla(300, 90%, 50%, 0.70) 40%, transparent 90%),hsl(315, 70%, 82%)",
       width: "100vh",
       scale: 4
     }, 0.2);
