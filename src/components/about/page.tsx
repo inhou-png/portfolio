@@ -284,7 +284,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
     //STARS
     useEffect(() => {
         /* ── Canvas stars ── */
-        const canvas:any = document.getElementById('stars');
+        const canvas: any = document.getElementById('stars');
         const ctx = canvas.getContext('2d');
 
         function resize() {
@@ -298,7 +298,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
         // Three layers: tiny/dim, medium, bright
         const layers = [
             { count: 350, rMin: 0.3, rMax: 0.8, alphaMin: 0.2, alphaMax: 0.5 },
-            { count: 150, rMin: 0.7, rMax: 1.4, alphaMin: 0.4, alphaMax: 0.75 },
+            { count: 1000, rMin: 0.7, rMax: 1.4, alphaMin: 0.4, alphaMax: 0.75 },
             { count: 60, rMin: 1.3, rMax: 2.2, alphaMin: 0.7, alphaMax: 1.0 },
         ];
 
@@ -308,11 +308,11 @@ export default function About({ setModelComputer, setModelHead }: any) {
             stars = [];
             layers.forEach(l => {
                 for (let i = 0; i < l.count; i++) {
-                    const hue = Math.random() < 0.2
-                        ? `hsl(${220 + Math.random() * 60},80%,90%)`   // blue-white
-                        : Math.random() < 0.15
-                            ? `hsl(${30 + Math.random() * 20},80%,90%)`  // warm yellow
-                            : `hsl(0,0%,${85 + Math.random() * 15}%)`;   // white
+                    // const hue = Math.random() < 0.2
+                    //     ? `hsl(${220 + Math.random() * 60},80%,90%)`   // blue-white
+                    //     : Math.random() < 0.15
+                    //         ? `hsl(${30 + Math.random() * 20},80%,90%)`  // warm yellow
+                    //         : `hsl(0,0%,${85 + Math.random() * 15}%)`;   // white
                     stars.push({
                         x: Math.random() * canvas.width,
                         y: Math.random() * canvas.height,
@@ -320,8 +320,8 @@ export default function About({ setModelComputer, setModelHead }: any) {
                         alpha: l.alphaMin + Math.random() * (l.alphaMax - l.alphaMin),
                         twinkleSpeed: 0.3 + Math.random() * 1.5,
                         twinkleOffset: Math.random() * Math.PI * 2,
-                        color: hue,
-                        glow: Math.random() < 0.25,
+                        color: "#fff",
+                        // glow: Math.random() < 0.25,
                     });
                 }
             });
@@ -368,8 +368,8 @@ export default function About({ setModelComputer, setModelHead }: any) {
 
     return (
         <div id="about" className='min-h-screen flex justify-center items-center my-10 md:my-0 overflow-hidden'>
-            <div id='background-projects' className='hidden overflow-hidden'>
-                <canvas id="stars"></canvas>
+            <div id='background-projects' className='flex overflow-hidden justify-center items-center absolute rounded-full'>
+                <canvas id="stars" className='absolute right-0'></canvas>
             </div>
 
             <div id="person" className='flex flex-wrap justify-center items-center'>
@@ -405,7 +405,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
                 </div>
             </div>
 
-            {/* <div id="projects" className='absolute flex flex-wrap justify-center items-center'>
+            <div id="projects" className='absolute flex flex-wrap justify-center items-center h-[100dvh] w-[100dvw]'>
                 <div
                     id="card-about"
                     className="w-[85%] md:w-[45%] order-2 md:order-1 border-[3px] border-white bg-black p-0"
@@ -497,7 +497,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
                 <div id="3d-pc" className='w-[500px] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-pc'>
                     <div className='three-pc'></div>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }

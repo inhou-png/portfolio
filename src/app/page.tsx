@@ -96,28 +96,36 @@ export default function Home() {
       }
     }, 0.2);
 
+    let scaleBgProjects = 4;
     tl.fromTo("#background-projects", {
-      width: "0%",
-      // borderRadius: "100% 100% 0 0",
-      borderRadius: "100%",
-      height: "0vh",
-      position: "absolute",
+      width: 0,
+      height: 0,
       bottom: -100,
       right: 0,
-      display: "block",
       backgroundColor: "#000",
-      // backgroundColor: "#fff",
+      scale: 0,
+      // transformOrigin: "bottom right",
       // background: "radial-gradient(circle at 150% 150%, hsla(295, 70%, 40%, 0.55) 0%, hsla(295, 70%, 40%, 0.28) 0%, transparent 0%), radial-gradient(circle at 150% 150%,  hsla(316, 85%, 55%, 1) 0%, hsla(316, 85%, 55%, 0.70) 40%, transparent 80%), transparent",
       // background: "radial-gradient(circle at 50% 130%, hsla(295, 70%, 40%, 0.55) 0%, hsla(295, 70%, 40%, 0.28) 35%, transparent 60%), radial-gradient(circle at 50% 88%,  hsla(316, 85%, 55%, 1) 0%, hsla(316, 85%, 55%, 0.70) 40%, transparent 80%),hsl(330, 75%, 88%)",
       // background: "radial-gradient(circle at 50% 62%, hsla(178, 82%, 60%, 0.70) 0%, hsla(178, 82%, 60%, 0.42) 30%, transparent 44%),radial-gradient(circle at 50% 80%, hsla(278, 70%, 35%, 0.80) 0%, hsla(278, 70%, 35%, 0.40) 35%, transparent 68%),radial-gradient(circle at 50% 62%, hsla(300, 90%, 50%, 1)    0%, hsla(300, 90%, 50%, 0.70) 40%, transparent 90%),hsl(315, 70%, 82%)",
-      // scale: 0
     }, {
-      height: "100vh",
-      position: "absolute",
       width: "100vh",
-      scale: 4
-    }, 0.2);
+      height: "100vh",
+      bottom: 0,
+      scale: scaleBgProjects,
+      // ease: "power3.inOut",
+    }, "<");
 
+    //stars
+    tl.fromTo("#stars", {
+       scale: 1,
+      left: "-100vh",
+      borderRadius: "100%",
+    }, {
+      scale: 1 / scaleBgProjects,
+      left: "-68vh",
+      borderRadius: "0%",
+    }, "<");
 
     //SECOND TIME
     tl.fromTo("#card-about", {
@@ -127,7 +135,7 @@ export default function Home() {
       yPercent: 0,
       opacity: 1,
       ease: "power3.inOut"
-    }, 0.2);
+    }, "-=0.3");
 
     tl.fromTo(".three-pc", {
       xPercent: 120,
@@ -136,72 +144,71 @@ export default function Home() {
       xPercent: 0,
       opacity: 1,
       ease: "power3.inOut"
-    }, 0.2);
+    }, "<");
 
-    tl.to("#card-about", {
-      xPercent: -200,
-      scale: 2,
-      opacity: 1,
-      ease: "power3.inOut"
-    }, 0.8);
+    // tl.to("#card-about", {
+    //   xPercent: -200,
+    //   scale: 2,
+    //   opacity: 1,
+    //   ease: "power3.inOut"
+    // }, 0.8);
 
-    const threePcEl: any = document.querySelector(".three-pc");
-    tl.to(".three-pc", {
-      x: () => (window.innerWidth / 4 - threePcEl?.offsetWidth / 5) * -1,
-      opacity: 1,
-      scale: 2,
-      ease: "power3.inOut"
-    }, 0.8);
-    tl.to(".three-pc",
-      {
-        yPercent: 125,
-        scale: 10,
-        ease: "none",
-        duration: 0.2
-      }, ">");
-
-
-    //SYSTEM OS
-    const macLoader: any = gsap.to("#mac-loader", {
-      scale: 0.8,
-      yoyo: true,
-      repeat: -1,
-      duration: 1,
-      ease: "power1.inOut",
-      paused: true,
-      opacity: 1,
-    });
-
-    tl.to("#test-os", {
-      opacity: 1,
-      display: "block",
-      ease: "none",
-      duration: 0,
-      onComplete: () => {
-        gsap.set("#desktop", { opacity: 0 });
-        const bootTl = gsap.timeline();
-
-        bootTl
-          .add(() => macLoader.play())
-
-          .to({}, { duration: 2 }) // espera 2s
-
-          .add(() => macLoader.pause())
-
-          .to("#mac-loader", { opacity: 0, duration: 0.5 })
-
-          .to("#mac-welcome", { opacity: 1, duration: 0.5 })
-
-          .to({}, { duration: 2 }) // espera 2s
-
-          .to("#mac-welcome", { opacity: 0, duration: 0.5 })
-
-          .to("#desktop", { opacity: 1, duration: 0.5 });
-      }
-    }, ">");
+    // const threePcEl: any = document.querySelector(".three-pc");
+    // tl.to(".three-pc", {
+    //   x: () => (window.innerWidth / 4 - threePcEl?.offsetWidth / 5) * -1,
+    //   opacity: 1,
+    //   scale: 2,
+    //   ease: "power3.inOut"
+    // }, 0.8);
+    // tl.to(".three-pc",
+    //   {
+    //     yPercent: 125,
+    //     scale: 10,
+    //     ease: "none",
+    //     duration: 0.2
+    //   }, ">");
 
 
-    //DRAG ITEMS DESKTOP
+    // //SYSTEM OS
+    // const macLoader: any = gsap.to("#mac-loader", {
+    //   scale: 0.8,
+    //   yoyo: true,
+    //   repeat: -1,
+    //   duration: 1,
+    //   ease: "power1.inOut",
+    //   paused: true,
+    //   opacity: 1,
+    // });
+
+    // tl.to("#test-os", {
+    //   opacity: 1,
+    //   display: "block",
+    //   ease: "none",
+    //   duration: 0,
+    //   onComplete: () => {
+    //     gsap.set("#desktop", { opacity: 0 });
+    //     const bootTl = gsap.timeline();
+
+    //     bootTl
+    //       .add(() => macLoader.play())
+
+    //       .to({}, { duration: 2 }) // espera 2s
+
+    //       .add(() => macLoader.pause())
+
+    //       .to("#mac-loader", { opacity: 0, duration: 0.5 })
+
+    //       .to("#mac-welcome", { opacity: 1, duration: 0.5 })
+
+    //       .to({}, { duration: 2 }) // espera 2s
+
+    //       .to("#mac-welcome", { opacity: 0, duration: 0.5 })
+
+    //       .to("#desktop", { opacity: 1, duration: 0.5 });
+    //   }
+    // }, ">");
+
+
     Draggable.create(".drag-item", {
       type: "x,y",
       bounds: ".drag-zone",
@@ -220,7 +227,6 @@ export default function Home() {
         });
       }
     });
-
   });
 
   return (
