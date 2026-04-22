@@ -105,13 +105,12 @@ export default function Home() {
       bottom: -100,
       right: 0,
       display: "block",
-      // backgroundColor: "#fff",
       backgroundColor: "#000",
+      // backgroundColor: "#fff",
       // background: "radial-gradient(circle at 150% 150%, hsla(295, 70%, 40%, 0.55) 0%, hsla(295, 70%, 40%, 0.28) 0%, transparent 0%), radial-gradient(circle at 150% 150%,  hsla(316, 85%, 55%, 1) 0%, hsla(316, 85%, 55%, 0.70) 40%, transparent 80%), transparent",
       // background: "radial-gradient(circle at 50% 130%, hsla(295, 70%, 40%, 0.55) 0%, hsla(295, 70%, 40%, 0.28) 35%, transparent 60%), radial-gradient(circle at 50% 88%,  hsla(316, 85%, 55%, 1) 0%, hsla(316, 85%, 55%, 0.70) 40%, transparent 80%),hsl(330, 75%, 88%)",
       // background: "radial-gradient(circle at 50% 62%, hsla(178, 82%, 60%, 0.70) 0%, hsla(178, 82%, 60%, 0.42) 30%, transparent 44%),radial-gradient(circle at 50% 80%, hsla(278, 70%, 35%, 0.80) 0%, hsla(278, 70%, 35%, 0.40) 35%, transparent 68%),radial-gradient(circle at 50% 62%, hsla(300, 90%, 50%, 1)    0%, hsla(300, 90%, 50%, 0.70) 40%, transparent 90%),hsl(315, 70%, 82%)",
-
-      scale: 0
+      // scale: 0
     }, {
       height: "100vh",
       position: "absolute",

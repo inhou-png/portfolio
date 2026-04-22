@@ -281,9 +281,96 @@ export default function About({ setModelComputer, setModelHead }: any) {
 
     }, []);
 
+    //STARS
+    useEffect(() => {
+        /* ── Canvas stars ── */
+        const canvas:any = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+
+        window.addEventListener('resize', () => { resize(); buildStars(); });
+
+        // Three layers: tiny/dim, medium, bright
+        const layers = [
+            { count: 350, rMin: 0.3, rMax: 0.8, alphaMin: 0.2, alphaMax: 0.5 },
+            { count: 150, rMin: 0.7, rMax: 1.4, alphaMin: 0.4, alphaMax: 0.75 },
+            { count: 60, rMin: 1.3, rMax: 2.2, alphaMin: 0.7, alphaMax: 1.0 },
+        ];
+
+        let stars = [];
+
+        function buildStars() {
+            stars = [];
+            layers.forEach(l => {
+                for (let i = 0; i < l.count; i++) {
+                    const hue = Math.random() < 0.2
+                        ? `hsl(${220 + Math.random() * 60},80%,90%)`   // blue-white
+                        : Math.random() < 0.15
+                            ? `hsl(${30 + Math.random() * 20},80%,90%)`  // warm yellow
+                            : `hsl(0,0%,${85 + Math.random() * 15}%)`;   // white
+                    stars.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        r: l.rMin + Math.random() * (l.rMax - l.rMin),
+                        alpha: l.alphaMin + Math.random() * (l.alphaMax - l.alphaMin),
+                        twinkleSpeed: 0.3 + Math.random() * 1.5,
+                        twinkleOffset: Math.random() * Math.PI * 2,
+                        color: hue,
+                        glow: Math.random() < 0.25,
+                    });
+                }
+            });
+        }
+        buildStars();
+
+        let time = 0;
+        function drawStars(dt) {
+            time += dt;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(s => {
+                const flicker = 0.6 + 0.4 * Math.sin(time * s.twinkleSpeed + s.twinkleOffset);
+                const a = s.alpha * flicker;
+                ctx.globalAlpha = a;
+
+                if (s.glow) {
+                    const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 5);
+                    g.addColorStop(0, s.color);
+                    g.addColorStop(1, 'transparent');
+                    ctx.fillStyle = g;
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.r * 5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.globalAlpha = a;
+                ctx.fillStyle = s.color;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            ctx.globalAlpha = 1;
+        }
+
+        // Animation loop
+        let last = performance.now();
+        function loop(now) {
+            drawStars((now - last) / 1000);
+            last = now;
+            requestAnimationFrame(loop);
+        }
+        requestAnimationFrame(loop);
+    }, [])
+
     return (
         <div id="about" className='min-h-screen flex justify-center items-center my-10 md:my-0 overflow-hidden'>
-            <div id='background-projects' className='hidden'></div>
+            <div id='background-projects' className='hidden overflow-hidden'>
+                <canvas id="stars"></canvas>
+            </div>
 
             <div id="person" className='flex flex-wrap justify-center items-center'>
                 <div id="text-about" className='text-gray-300 w-[80%] md:w-[40%] order-2 md:order-1'>
