@@ -298,7 +298,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
         // Three layers: tiny/dim, medium, bright
         const layers = [
             { count: 350, rMin: 0.3, rMax: 0.8, alphaMin: 0.2, alphaMax: 0.5 },
-            { count: 1000, rMin: 0.7, rMax: 1.4, alphaMin: 0.4, alphaMax: 0.75 },
+            { count: 1500, rMin: 0.7, rMax: 1.4, alphaMin: 0.4, alphaMax: 0.75 },
             { count: 60, rMin: 1.3, rMax: 2.2, alphaMin: 0.7, alphaMax: 1.0 },
         ];
 
@@ -308,11 +308,11 @@ export default function About({ setModelComputer, setModelHead }: any) {
             stars = [];
             layers.forEach(l => {
                 for (let i = 0; i < l.count; i++) {
-                    // const hue = Math.random() < 0.2
-                    //     ? `hsl(${220 + Math.random() * 60},80%,90%)`   // blue-white
-                    //     : Math.random() < 0.15
-                    //         ? `hsl(${30 + Math.random() * 20},80%,90%)`  // warm yellow
-                    //         : `hsl(0,0%,${85 + Math.random() * 15}%)`;   // white
+                    const hue = Math.random() < 0.2
+                        ? "ocean"   // blue-white
+                        : Math.random() < 0.15
+                            ? `pink`  // warm yellow
+                            : `white`;   // white
                     stars.push({
                         x: Math.random() * canvas.width,
                         y: Math.random() * canvas.height,
@@ -320,7 +320,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
                         alpha: l.alphaMin + Math.random() * (l.alphaMax - l.alphaMin),
                         twinkleSpeed: 0.3 + Math.random() * 1.5,
                         twinkleOffset: Math.random() * Math.PI * 2,
-                        color: "#fff",
+                        color: hue,
                         // glow: Math.random() < 0.25,
                     });
                 }
@@ -406,7 +406,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
             </div>
 
             <div id="projects" className='absolute flex flex-wrap justify-center items-center h-[100dvh] w-[100dvw]'>
-                <div
+                {/* <div
                     id="card-about"
                     className="w-[85%] md:w-[45%] order-2 md:order-1 border-[3px] border-white bg-black p-0"
                     style={{ imageRendering: "pixelated", boxShadow: "6px 6px 0px #ff66a3" }}
@@ -492,7 +492,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
                         </div>
                     </div>
 
-                </div>
+                </div> */}
 
                 <div id="3d-pc" className='w-[500px] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-pc'>
                     <div className='three-pc'></div>

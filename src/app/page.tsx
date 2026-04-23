@@ -118,33 +118,37 @@ export default function Home() {
 
     //stars
     tl.fromTo("#stars", {
-       scale: 1,
+      scale: 1,
       left: "-100vh",
       borderRadius: "100%",
+      onUpdate : ScrollTrigger.update
     }, {
       scale: 1 / scaleBgProjects,
       left: "-68vh",
       borderRadius: "0%",
+      onUpdate : ScrollTrigger.update
     }, "<");
 
     //SECOND TIME
-    tl.fromTo("#card-about", {
-      yPercent: 120,
-      opacity: 0,
-    }, {
-      yPercent: 0,
-      opacity: 1,
-      ease: "power3.inOut"
-    }, "-=0.3");
+    // tl.fromTo("#card-about", {
+    //   yPercent: 120,
+    //   opacity: 0,
+    // }, {
+    //   yPercent: 0,
+    //   opacity: 1,
+    //   ease: "power3.inOut"
+    // }, "-=0.3");
 
     tl.fromTo(".three-pc", {
-      xPercent: 120,
-      opacity: 0,
+      scale: 0,
+      // xPercent: 120,
+      // opacity: 0,
     }, {
-      xPercent: 0,
-      opacity: 1,
+      scale: 1,
+      // xPercent: 0,
+      // opacity: 1,
       ease: "power3.inOut"
-    }, "<");
+    }, "-=0.4");
 
     // tl.to("#card-about", {
     //   xPercent: -200,
@@ -236,9 +240,9 @@ export default function Home() {
       zIndex: -1,
       background: "#000",
     }}>
-      <div id="smooth-content" className="scrollbar">
+      <div id="smooth-content" className="scrollbar" style={{ willChange: "transform" }}>
         <Intro />
-        <div id="pin">
+        <div id="pin" style={{ willChange: "transform" }}>
           <About setModelComputer={setModelComputer} setModelHead={setModelHead} />
         </div>
         {/* <Projects /> */}
