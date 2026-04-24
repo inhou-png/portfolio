@@ -69,7 +69,6 @@
     box-sizing: border-box;
 }
 
-
 #test-os {
     position: fixed;
     width: 100dvw;
@@ -84,7 +83,18 @@
     font-family: 'Pixel' !important;
 }
 
-.tools {
+.tools-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    cursor: pointer !important;
+    // width: 100px;
+    // left: 0;
+    i {
+        font-size: 50px;
+    }
     span {
         font-family: 'Pixel' !important;
     }

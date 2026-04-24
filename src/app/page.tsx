@@ -8,7 +8,8 @@ import { Observer } from 'gsap/Observer';
 import { Draggable } from 'gsap/Draggable';
 import { useGSAP } from '@gsap/react';
 import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, Observer, Draggable, ScrambleTextPlugin);
+import InertiaPlugin from "gsap/InertiaPlugin";
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, Observer, Draggable, ScrambleTextPlugin, InertiaPlugin);
 
 // import Image from 'next/image'
 import React, { useEffect, useState, useRef, use } from "react";
@@ -58,24 +59,11 @@ export default function Home() {
     })
 
     //background
-    const proxy = { progress: 0 };
-    tlBack.to(proxy, {
-      progress: 1,
-      onUpdate() {
-        const offset = proxy.progress * 2 - 1;
-        const el = refMain.current!;
-
-        // cada ponto do degradê mapeia offset -1→0→+1
-        // p=0 → tudo preto | p=0.5 → degradê | p=1 → tudo azul
-        const p = proxy.progress;
-        const x0 = Math.max(0, -offset) * 100;           // onde o preto termina (%)
-        const x1 = Math.min(1, 1 - offset) * 100;        // onde o azul começa (%)
-        // const rgbColor = [56, 80, 126];
-
-        el.style.background = `linear-gradient(to bottom,rgb(0,0,0) ${x0}%,rgb(3,8,30) ${x0 + (x1 - x0) * 0.05}%,rgb(30,45,73) 100%)`;
-      },
+    tlBack.fromTo("body", {
+      background: "rgb(0,0,0)"
+    }, {
+      background: "rgb(30,45,73)"
     }, 0);
-
 
     //FIRST TIME
     tl.to("#text-about", {
@@ -121,14 +109,30 @@ export default function Home() {
     tl.fromTo("#stars", {
       scale: 1,
       left: "-100vh",
+      // left: "-110%",
       borderRadius: "100%",
       onUpdate: ScrollTrigger.update
     }, {
       scale: 1 / scaleBgProjects,
       left: "-68vh",
+      // left: "-68%",
       borderRadius: "0%",
       onUpdate: ScrollTrigger.update
     }, "<");
+
+    //tools
+    const toolsIcons = document.querySelectorAll(".tools-icon");
+    for (let tool of toolsIcons) {
+      gsap.to(tool, {
+        yPercent: Math.floor(Math.random() * (-30 - 30 + 1)) + 30,
+        xPercent: Math.floor(Math.random() * (-30 - 30 + 1)) + 30,
+        yoyo: true,
+        ease: "power1.inOut",
+        duration: 3,
+        repeat: -1,
+      })
+    }
+
 
     //SECOND TIME
     // tl.fromTo("#card-about", {
@@ -147,6 +151,13 @@ export default function Home() {
       ease: "power3.inOut"
     }, "-=0.4");
 
+    // tl.fromTo(".tools-icon", {
+    //   scale: 0,
+    // }, {
+    //   scale: 1,
+    //   ease: "power3.inOut"
+    // }, "+=0.1");
+
     tl.fromTo("#title-projects", {
       scale: 0,
     }, {
@@ -157,6 +168,7 @@ export default function Home() {
       },
       ease: "power3.inOut"
     }, "-=0.4");
+
 
     // tl.to("#card-about", {
     //   xPercent: -200,
@@ -220,6 +232,10 @@ export default function Home() {
     //   }
     // }, ">");
 
+    Draggable.create(".tools-icon", {
+      bounds: "#about",
+      inertia: true
+    });
 
     Draggable.create(".drag-item", {
       type: "x,y",
@@ -242,12 +258,7 @@ export default function Home() {
   });
 
   return (
-    <main className={`scrollbar`} ref={refMain} style={{
-      position: "fixed",
-      inset: 0,
-      zIndex: -1,
-      background: "#000",
-    }}>
+    <main>
       <div id="smooth-content" className="scrollbar" style={{ willChange: "transform" }}>
         <Intro />
         <div id="pin" style={{ willChange: "transform" }}>

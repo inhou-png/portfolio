@@ -388,6 +388,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
 
     return (
         <div id="about" className='min-h-screen flex justify-center items-center my-10 md:my-0 overflow-hidden'>
+
             <div id='background-projects' className='flex overflow-hidden justify-center items-center absolute rounded-full'>
                 <canvas id="stars" className='absolute right-0'></canvas>
             </div>
@@ -425,39 +426,77 @@ export default function About({ setModelComputer, setModelHead }: any) {
                 </div>
             </div>
 
+
             <div id="projects" className='absolute flex flex-wrap justify-center items-center h-[100dvh] w-[100dvw]'>
-                <h1 id="title-projects" className='absolute top-[25px] text-white text-3xl'>Ferramentas</h1>
+                {/* <h1 id="title-projects" className='absolute top-[25px] text-white text-3xl'>Ferramentas</h1> */}
 
-                <div className='tools w-[50px] text-white'>
+                <div className='tools-icon w-[50px] text-white'>
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" />
-
                     <span>JavaScript</span>
                 </div>
 
-                <div className='tools w-[50px] text-white'>
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" />
+                <div className='tools-icon w-[50px] text-white'>
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-plain.svg" />
                     <span>TypeScript</span>
                 </div>
 
-                <div className='tools w-[50px] text-white'>
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" />
-
+                <div className='tools-icon w-[50px] text-white'>
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-plain.svg" />
                     <span>mongoDB</span>
                 </div>
 
 
-                <div className='tools w-[50px] text-white'>
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" />
-
+                <div className='tools-icon w-[50px] text-white'>
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-plain.svg" />
                     <span>Node.js</span>
                 </div>
 
-                <div className='tools w-[50px] text-white'>
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" />
-
+                <div className='tools-icon w-[50px] text-white'>
+                    <i className="devicon-express-original"></i>
                     <span>Express</span>
                 </div>
 
+                <div className='tools-icon w-[50px] text-white'>
+                    <i className="devicon-amazonwebservices-plain-wordmark"></i>
+                    <span>AWS</span>
+                </div>
+
+                <div className='tools-icon w-[50px] text-white'>
+                    <i className="devicon-angular-plain"></i>
+                    <span>Angular</span>
+                </div>
+
+                <div className='tools-icon w-[50px] text-white'>
+                    <i className="devicon-jest-plain colored"></i>
+                    <span>Jest</span>
+                </div>
+
+                <div className='tools-icon w-[50px] text-white'>
+                    <i className="devicon-tailwindcss-original colored"></i>
+                    <span>Tailwind</span>
+                </div>
+
+                <div className='tools-icon w-[50px] text-white'>
+                    <i className="devicon-docker-plain colored"></i>
+                    <span>Docker</span>
+                </div>
+
+                <div className='tools-icon w-[50px] text-white'>
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" />
+                    <span>Vite</span>
+                </div>
+
+                <div className='tools-icon w-[50px] text-white'>
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" />
+                    <span>React</span>
+                </div>
+
+                <div className='tools-icon w-[50px] text-white'>
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ionic/ionic-original.svg" />
+                    <span>Ionic</span>
+                </div>
+
+                
                 <div id="3d-pc" className='w-[500px] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-pc'>
                     <div className='three-pc'></div>
                 </div>

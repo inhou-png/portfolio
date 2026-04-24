@@ -17,6 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
+      <head>
+        <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+      </head>
       <body className={`${montserrat.className} h-full relative bg-black`}>
         {children}
         <Footer />
