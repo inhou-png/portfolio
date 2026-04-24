@@ -30,6 +30,11 @@
         url("//db.onlinewebfonts.com/t/5ef60dc8370b330aa40e0c874bda45aa.svg#Geneva") format("svg");
 }
 
+@font-face {
+    font-family: "Pixel";
+    src: url("/fonts/pixel_3/pixel2.ttf") format("truetype");
+}
+
 @layer base {
     * {
         font-family: 'Geneva', system-ui, sans-serif;
@@ -72,4 +77,15 @@
     z-index: 99;
     opacity: 0;
     display: none;
+}
+
+#title-projects {
+    font-size: 44px;
+    font-family: 'Pixel' !important;
+}
+
+.tools {
+    span {
+        font-family: 'Pixel' !important;
+    }
 }

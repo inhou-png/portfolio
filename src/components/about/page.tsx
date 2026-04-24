@@ -9,10 +9,9 @@ import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
-// import { Observer } from 'gsap/Observer';
-// import { Draggable } from 'gsap/Draggable';
 import { SplitText } from 'gsap/SplitText';
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText, ScrambleTextPlugin);
 
 import Image from 'next/image'
 
@@ -71,8 +70,29 @@ export default function About({ setModelComputer, setModelHead }: any) {
             stagger: 0.1,
             ease: "expo.out",
         }, 1);
-    });
 
+        // tl.fromTo("#about-text-1", {
+        //     scale: 1,
+        // }, {
+        //     scale: 1,
+        //     scrambleText: {
+        //         text: "Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código.",
+        //     chars: "001"
+        //   },
+        //     ease: "power3.inOut"
+        // }, ">");
+
+        // tl.fromTo("#about-text-2", {
+        //     scale: 1,
+        // }, {
+        //     scale: 1,
+        //     scrambleText: {
+        //         text: "Também tenho uma grande paixão por um bom design em geral (UI, web, tipografia, pixel art, animação, ilustrações isométricas, branding e assim por diante).",
+        //         chars: "001"
+        //     },
+        //     ease: "power3.inOut"
+        // }, ">");
+    });
 
     //LEGO HEAD
     useEffect(() => {
@@ -387,11 +407,11 @@ export default function About({ setModelComputer, setModelHead }: any) {
                         <span id="title-person">Um pouco sobre mim</span>
                     </h1>
                     <div className='font-serif leading-relaxed text-lg'>
-                        <p className='mb-5'>
+                        <p className='mb-5' id='about-text-1'>
                             Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código.
                         </p>
 
-                        <p>
+                        <p id='about-text-2'>
                             Também tenho uma grande paixão por um bom design em geral (UI, web, tipografia, pixel art, animação, ilustrações isométricas, branding e assim por diante).
                         </p>
                     </div>
@@ -406,93 +426,37 @@ export default function About({ setModelComputer, setModelHead }: any) {
             </div>
 
             <div id="projects" className='absolute flex flex-wrap justify-center items-center h-[100dvh] w-[100dvw]'>
-                {/* <div
-                    id="card-about"
-                    className="w-[85%] md:w-[45%] order-2 md:order-1 border-[3px] border-white bg-black p-0"
-                    style={{ imageRendering: "pixelated", boxShadow: "6px 6px 0px #ff66a3" }}
-                >
+                <h1 id="title-projects" className='absolute top-[25px] text-white text-3xl'>Ferramentas</h1>
 
-                    <div className="flex items-center justify-between border-b-[3px] border-white px-4 py-2">
-                        <div className="flex gap-2">
-                            <span className="block h-3 w-3 border-[2px] border-white bg-[#ff66a3]" />
-                            <span className="block h-3 w-3 border-[2px] border-white bg-white/20" />
-                            <span className="block h-3 w-3 border-[2px] border-white bg-white/20" />
-                        </div>
-                        <p className="font-mono text-[10px] font-[700] uppercase tracking-[0.2em] text-white/40">
-                            sobre_mim.exe
-                        </p>
-                    </div>
+                <div className='tools w-[50px] text-white'>
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" />
 
-                    <div className="flex items-center gap-4 border-b-[3px] border-white/20 px-4 py-4">
-                        <div
-                            className="h-14 w-14 flex-shrink-0 border-[3px] border-white"
-                            style={{
-                                background: `
-          repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 7px,
-            rgba(255,102,163,0.15) 7px,
-            rgba(255,102,163,0.15) 8px
-          ),
-          repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 7px,
-            rgba(255,102,163,0.15) 7px,
-            rgba(255,102,163,0.15) 8px
-          ),
-          #1a1a2e
-        `,
-                            }}
-                        >
-                            <div className="flex h-full w-full items-center justify-center font-mono text-[22px] font-[900] text-[#ff66a3]">
-                                {'</>'}
-                            </div>
-                        </div>
-                        <div>
-                            <p className="font-mono text-[18px] font-[900] leading-none text-white">
-                                Dev Front-end
-                            </p>
-                            <p className="mt-1 font-mono text-[11px] text-[#ff66a3]">
-                                ● online
-                            </p>
-                        </div>
-                    </div>
+                    <span>JavaScript</span>
+                </div>
 
-                    <div className="px-4 py-5">
-                        <p className="mb-4 font-mono text-[13px] leading-[1.8] text-white/80">
-                            Crio soluções limpas e reutilizáveis com foco em React, TypeScript e
-                            Next.js. Boas práticas não são opcionais — são o padrão. Apaixonado
-                            por UI, tipografia, pixel art, animação e branding.
-                        </p>
+                <div className='tools w-[50px] text-white'>
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" />
+                    <span>TypeScript</span>
+                </div>
 
-                        <div className="mb-5 grid grid-cols-3 gap-[2px] border-[2px] border-white/20">
-                            {[
-                                { label: "anos xp", value: "3+" },
-                                { label: "projetos", value: "20+" },
-                                { label: "café/dia", value: "∞" },
-                            ].map((s) => (
-                                <div key={s.label} className="flex flex-col items-center border-[1px] border-white/10 py-3">
-                                    <span className="font-mono text-[22px] font-[900] text-[#ff66a3]">{s.value}</span>
-                                    <span className="font-mono text-[9px] uppercase tracking-widest text-white/30">{s.label}</span>
-                                </div>
-                            ))}
-                        </div>
+                <div className='tools w-[50px] text-white'>
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" />
 
-                        <div className="flex flex-wrap gap-[4px]">
-                            {["React", "TypeScript", "Next.js", "Tailwind", "GSAP"].map((tech) => (
-                                <span
-                                    key={tech}
-                                    className="border-[2px] border-white/20 bg-white/5 px-2 py-[2px] font-mono text-[10px] font-[700] uppercase tracking-wider text-white/50"
-                                >
-                                    {tech}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
+                    <span>mongoDB</span>
+                </div>
 
-                </div> */}
+
+                <div className='tools w-[50px] text-white'>
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" />
+
+                    <span>Node.js</span>
+                </div>
+
+                <div className='tools w-[50px] text-white'>
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" />
+
+                    <span>Express</span>
+                </div>
 
                 <div id="3d-pc" className='w-[500px] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-pc'>
                     <div className='three-pc'></div>

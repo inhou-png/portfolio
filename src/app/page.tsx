@@ -7,7 +7,8 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { Observer } from 'gsap/Observer';
 import { Draggable } from 'gsap/Draggable';
 import { useGSAP } from '@gsap/react';
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, Observer, Draggable);
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, Observer, Draggable, ScrambleTextPlugin);
 
 // import Image from 'next/image'
 import React, { useEffect, useState, useRef, use } from "react";
@@ -121,12 +122,12 @@ export default function Home() {
       scale: 1,
       left: "-100vh",
       borderRadius: "100%",
-      onUpdate : ScrollTrigger.update
+      onUpdate: ScrollTrigger.update
     }, {
       scale: 1 / scaleBgProjects,
       left: "-68vh",
       borderRadius: "0%",
-      onUpdate : ScrollTrigger.update
+      onUpdate: ScrollTrigger.update
     }, "<");
 
     //SECOND TIME
@@ -141,12 +142,19 @@ export default function Home() {
 
     tl.fromTo(".three-pc", {
       scale: 0,
-      // xPercent: 120,
-      // opacity: 0,
     }, {
       scale: 1,
-      // xPercent: 0,
-      // opacity: 1,
+      ease: "power3.inOut"
+    }, "-=0.4");
+
+    tl.fromTo("#title-projects", {
+      scale: 0,
+    }, {
+      scale: 1,
+      scrambleText: {
+        text: "FERRAMENTAS",
+        chars: "001"
+      },
       ease: "power3.inOut"
     }, "-=0.4");
 
