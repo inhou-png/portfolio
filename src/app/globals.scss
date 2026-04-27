@@ -39,8 +39,8 @@
 @layer base {
     * {
         font-family: 'Geneva', system-ui, sans-serif;
-        font-family: 'Pixel' !important;
-        font-family: 'Pixelify Sans' !important;
+        font-family: 'Pixel';
+        font-family: 'Pixelify Sans';
     }
 
     *::-webkit-scrollbar {
@@ -85,20 +85,3 @@
     font-size: 44px;
     font-family: 'Pixel' !important;
 }
-
-// .tools-icon {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     flex-direction: column;
-//     position: absolute;
-//     cursor: pointer !important;
-//     // width: 100px;
-//     // left: 0;
-//     i {
-//         font-size: 50px;
-//     }
-//     span {
-//         font-family: 'Pixel' !important;
-//     }
-// }

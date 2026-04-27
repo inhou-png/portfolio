@@ -12,7 +12,7 @@ import InertiaPlugin from "gsap/InertiaPlugin";
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, Observer, Draggable, ScrambleTextPlugin, InertiaPlugin);
 
 // import Image from 'next/image'
-import React, { useEffect, useState, useRef, use } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 //COMPONENTS
 import FixedItems from '@/components/fixed-items/page'
@@ -21,10 +21,30 @@ import Projects from '@/components/projects/page'
 import About from '@/components/about/page'
 import System from "@/components/system/page";
 
+function shuffle(arr: any) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+};
+
+function buildBlocks(w: number, h: number, bs: number) {
+  const cols = Math.ceil(w / bs);
+  const rows = Math.ceil(h / bs);
+  const list = [];
+  for (let r = 0; r < rows; r++)
+    for (let c = 0; c < cols; c++)
+      list.push({ x: c * bs, y: r * bs, w: bs, h: bs });
+  return shuffle(list);
+};
+
 export default function Home() {
-  const [modelHead, setModelHead]: any = useState(null);
-  const [modelComputer, setModelComputer]: any = useState(null);
-  const refMain: any = useRef(null);
+  const blockSize = 50;
+  const blockColor = "blue";
+
+  const canvasRef = useRef(null);
+  const [visible, setVisible] = useState(false);
 
   //GSAP
   useGSAP(() => {
@@ -35,35 +55,66 @@ export default function Home() {
     });
 
     const tl = gsap.timeline();
+    const tlBack = gsap.timeline();
 
-    // const tlBack = gsap.timeline();
-    // ScrollTrigger.create({
-    //   start: "top top",
-    //   // end: "+=4000px",
-    //   pin: true,
-    //   // scrub: true,
-    //   // markers: true,
-    //   animation: tlBack,
-    // })
+    ScrollTrigger.create({
+      start: "top top",
+      // end: "+=4000px",
+      pin: true,
+      scrub: true,
+      // markers: true,
+      animation: tlBack,
+    })
 
     ScrollTrigger.create({
       trigger: "#pin",
       start: "top top",
-      end: "+=4000px",
+      end: "+=2000px",
       pin: true,
-      // scrub: true,
+      scrub: true,
       // markers: true,
       animation: tl,
-      onUpdate: (self) => {
-      }
     })
 
     //background
-    // tlBack.fromTo("body", {
-    //   background: "rgb(0,0,0)"
-    // }, {
-    //   background: "rgb(30,45,73)"
-    // }, 0);
+    tlBack.fromTo("body", {
+      background: "rgb(0,0,0)"
+    }, {
+      background: "rgb(30,45,73)"
+    }, 0);
+
+
+    const cv = canvasRef.current;
+    if (!cv) return;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const ctx = cv.getContext("2d");
+    const blocks = buildBlocks(w, h, blockSize);
+    cv.width = w;
+    cv.height = h;
+    ctx.clearRect(0, 0, w, h);
+
+    const frameCount = { count: 0 };
+    tl.to(frameCount, {
+      count: blocks.length - 1,
+      snap: { count: 1 },
+      // ease: "none",
+      ease: "power1.inOut",
+
+      onUpdate: () => {
+        const i = Math.round(frameCount.count);
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = blockColor;
+
+        if (!i) { ctx.clearRect(0, 0, w, h); return };
+
+        for (let j = 0; j <= i; j++) {
+          const b = blocks[j];
+          if (!b) continue;
+          ctx.fillRect(b.x, b.y, b.w, b.h);
+        }
+      },
+    }, 0.2);
 
     //FIRST TIME
     // tl.to("#text-about", {
@@ -144,12 +195,12 @@ export default function Home() {
     //   ease: "power3.inOut"
     // }, "-=0.3");
 
-    // tl.fromTo(".three-pc", {
-    //   scale: 0,
-    // }, {
-    //   scale: 1,
-    //   ease: "power3.inOut"
-    // }, "-=0.4");
+    tl.fromTo(".three-pc", {
+      scale: 0,
+    }, {
+      scale: 1,
+      ease: "power3.inOut"
+    }, "-=0.4");
 
     // tl.fromTo(".tools-icon", {
     //   scale: 0,
@@ -259,7 +310,6 @@ export default function Home() {
 
   //STARS
   useEffect(() => {
-    /* ── Canvas stars ── */
     const canvas: any = document.getElementById('stars');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -272,7 +322,6 @@ export default function Home() {
 
     window.addEventListener('resize', () => { resize(); buildStars(); });
 
-    // Three layers: tiny/dim, medium, bright
     const layers = [
       { count: 350, rMin: 0.3, rMax: 0.8, alphaMin: 0.2, alphaMax: 0.5 },
       { count: 1500, rMin: 0.7, rMax: 1.4, alphaMin: 0.4, alphaMax: 0.75 },
@@ -286,10 +335,10 @@ export default function Home() {
       layers.forEach(l => {
         for (let i = 0; i < l.count; i++) {
           const hue = Math.random() < 0.2
-            ? "white"   // blue-white
+            ? "white"
             : Math.random() < 0.15
-              ? `pink`  // warm yellow
-              : `white`;   // white
+              ? `pink`
+              : `white`;
           stars.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
@@ -349,17 +398,20 @@ export default function Home() {
 
       <div id="smooth-content" className="scrollbar">
         <Intro />
-        <div id="pin">
+        <div id="pin" className="flex flex-col justify-center items-center will-change-transform">
           <About />
+          <canvas id="pixel" ref={canvasRef} className="fixed" />
+
+          <Projects />
         </div>
-        {/* <Projects /> */}
       </div>
+
 
       <div id='test-os'>
         <System />
       </div>
 
-      <FixedItems />
+      {/* <FixedItems /> */}
     </main>
   )
 }

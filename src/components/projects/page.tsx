@@ -1,61 +1,132 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
+
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { gsap } from "gsap";
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { SplitText } from 'gsap/SplitText';
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText, ScrambleTextPlugin);
 
 //GIF
 import Octocat from '@/images/oct.gif';
 
 export default function Projects() {
+    //MACINTOSH
+    useEffect(() => {
+        let threeEl: any = document.querySelector(".three-pc");
+        // let aboutEl: any = document.querySelector(".about-media-pc");
+
+        if (!threeEl) return;
+
+        const scene = new THREE.Scene();
+
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            1,
+            0.1,
+            1000
+        );
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setClearColor(0x000000, 0);
+
+        renderer.setSize(1000, 1000);
+        threeEl.appendChild(renderer.domElement);
+
+        camera.position.set(1, 1, 5);
+
+        scene.add(new THREE.AmbientLight(0xffccff, 2));
+
+        const dirLight = new THREE.DirectionalLight(0xffccff, 0);
+        const dirLight2 = new THREE.DirectionalLight(0xfff000, 2);
+        // const dirLight3 = new THREE.DirectionalLight(0xfff000, 4);
+        const dirLight3 = new THREE.DirectionalLight(0xffcccc, 2);
+
+        dirLight.position.set(5, 5, 5);
+        dirLight2.position.set(-10, 0, 10);
+        dirLight3.position.set(10, -2, 20);
+        scene.add(dirLight, dirLight2, dirLight3);
+
+
+        const loader = new GLTFLoader();
+
+        loader.load(
+            "/macintosh/scene.gltf",
+            (gltf) => {
+                const model = gltf.scene;
+
+                scene.add(model);
+
+                model.scale.set(7, 7, 7);
+                model.position.set(0, 0, 0);
+
+                const box = new THREE.Box3().setFromObject(model);
+                const center = box.getCenter(new THREE.Vector3());
+
+                model.position.sub(center);
+
+                console.log("Modelo carregado!");
+            },
+            (xhr) => {
+                if (xhr.total > 0) {
+                    const percent = (xhr.loaded / xhr.total) * 100;
+                    console.log(`Carregando: ${percent.toFixed(1)}%`);
+                } else {
+                    console.log(`Carregando: ${xhr.loaded} bytes`);
+                }
+            },
+            (error) => {
+                console.error("Erro ao carregar GLTF:", error);
+            }
+        );
+
+
+        let mouseX: any = 0;
+        let mouseY: any = 0;
+
+        window.addEventListener("mousemove", (e) => {
+            mouseX = ((e.clientX / window.innerWidth) * 2 - 1) * -1;
+            mouseY = (-(e.clientY / window.innerHeight) * 2 + 1) * -1;
+        });
+
+        function animate() {
+            const intensity = 0.3;
+
+            camera.position.x += (mouseX * intensity - camera.position.x) * 0.05;
+            camera.position.y += ((mouseY + 2) * intensity - camera.position.y) * 0.05;
+
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+
+        renderer.setAnimationLoop(animate);
+
+        return () => {
+            renderer.dispose();
+            threeEl.removeChild(renderer.domElement);
+        };
+
+    }, []);
+
     return (
-        <div className='min-h-screen flex justify-center items-center mt-20 md:mt-0'>
-            <div className=' flex flex-wrap justify-center xl:items-center md:items-start items-center w-[100%] mb-[50px]'>
-                <div className='w-[70%] md:w-[40%] xl:w-[30%] mb-10 md:mb-0 mr-0 md:mr-10 md:mt-10 mt-0'>
-                    <Image alt='Octocat' src={Octocat} className='w-[100%]' />
-                </div>
+        <div className='absolute flex justify-center items-center z-[99]'>
+            <div className='text-project'>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, quia consequuntur! Distinctio, officiis. Quidem nisi, voluptatem corrupti quas numquam, dignissimos quae aut sint ducimus iusto recusandae alias magni excepturi libero.</p>
+            </div>
 
-                <div className='text-gray-300 font-extralight w-[80%] md:w-[40%]'>
-                    <div className='mb-5'>
-                        <h1 className='mb-5 text-3xl md:text-4xl'>Projetos</h1>
-                        <p>Possuo alguns projetos em meu GitHub. No meu tempo livre costumo elaborar módulos OSS.</p>
-                    </div>
+            <div id="3d" className='flex justify-center'>
+                <div className='three-pc' id='pc'></div>
+            </div>
 
-                    <div className='flex flex-wrap gap-5 items-center mb-[0]'>
-                        <Link href="https://www.applayos.com/" target='_blank'>
-                            <div className='cursor-pointer w-full md:max-w-[220px] bg-black/[0.2] border-t-8 mb-3 md:mb-0 border-black/30 rounded-lg p-4 transform transition-all duration-150 hover:-translate-y-2 hover:shadow-lg hover:bg-black/[0.1]'>
-                                <h2 className='mb-3 text-lg font-bold'>Website ApplayOs 🌐</h2>
-                                <p>Site desenvolvido para a empresa ApplayOs.</p>
-                                {/* <p>description...</p> */}
-                                {/* <p>description...</p> */}
-                            </div>
-                        </Link>
-
-                        <Link href="https://www.xgrupo.com/" target='_blank'>
-                            <div className='cursor-pointer w-full md:max-w-[220px] bg-black/[0.2] border-t-8 mb-3 md:mb-0 border-black/30 rounded-lg p-4 transform transition-all duration-150 hover:-translate-y-2 hover:shadow-lg hover:bg-black/[0.1]'>
-                                <h2 className='mb-3 text-lg font-bold'>Website Xsupermercados 🔵🟡</h2>
-                                <p>Site desenvolvido para o Xsupermercados</p>
-                                {/* <p>description...</p> */}
-                                {/* <p>description...</p> */}
-                            </div>
-                        </Link>
-
-                        <Link href="https://github.com/inhouuu/F1-UDP" target='_blank'>
-                            <div className='cursor-pointer w-full md:max-w-[220px] bg-black/[0.2] border-t-8 mb-3 md:mb-0 border-black/30 rounded-lg p-4 transform transition-all duration-150 hover:-translate-y-2 hover:shadow-lg hover:bg-black/[0.1]'>
-                                <h2 className='mb-3 text-lg font-bold'>Telemetria EA F1 🏎️</h2>
-                                <p>Módulo capaz de converter os bites recebidos por um servidor UDP e apresentá-los por meio de uma interface. </p>
-                                {/* <p>description...</p> */}
-                                {/* <p>description...</p> */}
-                            </div>
-                        </Link>
-
-                        <Link href="https://planograma2.applay.tech/6633a7bf5e3ea4ccf4195220" target='_blank'>
-                            <div className='cursor-pointer w-full md:max-w-[220px] bg-black/[0.2] border-t-8 mb-3 md:mb-0 border-black/30 rounded-lg p-4 transform transition-all duration-150 hover:-translate-y-2 hover:shadow-lg hover:bg-black/[0.1]'>
-                                <h2 className='mb-3 text-lg font-bold'>Planograma ✏️</h2>
-                                <p>Projeto feito em parceria com a rede Barbosa supermercados com o intuito de facilitar a organização mercadológica, com ele é possível criar estruturadoras customizáveis para a organização de produtos e apresentação ao consumidor final.</p>
-                                {/* <p>description...</p> */}
-                                {/* <p>description...</p> */}
-                            </div>
-                        </Link>
-                    </div>
-                </div>
+            <div className='text-project'>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, quia consequuntur! Distinctio, officiis. Quidem nisi, voluptatem corrupti quas numquam, dignissimos quae aut sint ducimus iusto recusandae alias magni excepturi libero.</p>
             </div>
         </div>
     )
