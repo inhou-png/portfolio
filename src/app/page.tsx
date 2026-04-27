@@ -286,7 +286,7 @@ export default function Home() {
       layers.forEach(l => {
         for (let i = 0; i < l.count; i++) {
           const hue = Math.random() < 0.2
-            ? "ocean"   // blue-white
+            ? "white"   // blue-white
             : Math.random() < 0.15
               ? `pink`  // warm yellow
               : `white`;   // white
@@ -342,7 +342,7 @@ export default function Home() {
     }
     requestAnimationFrame(loop);
   }, [])
-  
+
   return (
     <main>
       <canvas id="stars" className="fixed"></canvas>

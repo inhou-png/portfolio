@@ -18,7 +18,7 @@ import Image from 'next/image'
 
 //IMAGENS
 import face from '@/images/head-torta-gif.gif'
-import moon from "@/images/moon.jpeg";
+import moon from "@/images/moon.png";
 
 export default function About() {
     let intervalId: any = useRef(null);
@@ -43,19 +43,21 @@ export default function About() {
             animation: tl,
         });
 
-        tl.fromTo(
-            "#marker",
-            { scaleX: 0, transformOrigin: "left center" },
-            { scaleX: 1, duration: 2.1, ease: "power2.out" },
-            1
-        );
+        gsap.to("#moon", {
+            rotate: "360deg",
+            repeat: -1,
+            ease: "none",
+            duration: 60
+        })
 
-        tl.fromTo(
-            "#title-person",
-            { color: "#fff" },
-            { color: "#000" },
-            1
-        );
+        gsap.to("#head", {
+            x: 25,
+            y: 25,
+            yoyo: true,
+            ease: "power1.inOut",
+            duration: 3,
+            repeat: -1,
+        })
 
         // let split = SplitText.create("#title-person", {
         //     type: "chars,words,lines",
@@ -419,22 +421,25 @@ export default function About() {
         // </div>
 
         <div id='about' className='flex justify-center items-center overflow-hidden w-[100%]'>
+
             <div id="text-about" className=''>
-                <h1 className="text-[100px] font-bold w-[250px] leading-[100px] text-white">
+                <h1 className="text-[100px] font-bold w-[250px] leading-[100px] text-gray-300">
                     SOBRE
-                    <span className='block text-[DeepPink]'>MIM</span>
+                    <span className='block text-[DeepPink] text-gray-500'>MIM</span>
                 </h1>
-                <p className='font-serif leading-relaxed w-[500px] text-white text-[24px]'>
-                    Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código.
+
+                <p className='font-serif leading-relaxed w-[600px] text-gray-300 text-[24px]'>
+                    {/* Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código. */}
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eveniet similique accusantium provident soluta ex neque eum, repellat ullam, at, tenetur voluptatibus eligendi consequatur eos ut quae possimus deleniti assumenda?
                 </p>
 
-                <Image src={moon} alt='moon'/>
+                <Image src={moon} alt='moon' className='w-[500px] absolute bottom-[-300px]' id='moon' />
             </div>
 
 
 
             <div id="3d-about" className='w-[90%] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-head'>
-                <div className='three-head'></div>
+                <div className='three-head' id='head'></div>
                 {/* <Image alt='Face' src={face} className='w-[70%] h-auto md:w-[80%]' /> */}
             </div>
 
