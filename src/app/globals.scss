@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
 
 // @font-face {
@@ -38,6 +39,8 @@
 @layer base {
     * {
         font-family: 'Geneva', system-ui, sans-serif;
+        font-family: 'Pixel' !important;
+        font-family: 'Pixelify Sans' !important;
     }
 
     *::-webkit-scrollbar {
@@ -64,8 +67,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: dashed 2px red;
-    border-bottom: dashed 2px red;
+    // border-top: dashed 2px red;
+    // border-bottom: dashed 2px red;
     box-sizing: border-box;
 }
 
@@ -83,19 +86,19 @@
     font-family: 'Pixel' !important;
 }
 
-.tools-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    position: absolute;
-    cursor: pointer !important;
-    // width: 100px;
-    // left: 0;
-    i {
-        font-size: 50px;
-    }
-    span {
-        font-family: 'Pixel' !important;
-    }
-}
+// .tools-icon {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     flex-direction: column;
+//     position: absolute;
+//     cursor: pointer !important;
+//     // width: 100px;
+//     // left: 0;
+//     i {
+//         font-size: 50px;
+//     }
+//     span {
+//         font-family: 'Pixel' !important;
+//     }
+// }

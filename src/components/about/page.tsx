@@ -16,10 +16,11 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText, ScrambleT
 import Image from 'next/image'
 
 
-//TESTE
+//IMAGENS
 import face from '@/images/head-torta-gif.gif'
+import moon from "@/images/moon.jpeg";
 
-export default function About({ setModelComputer, setModelHead }: any) {
+export default function About() {
     let intervalId: any = useRef(null);
 
     //gsap
@@ -35,10 +36,10 @@ export default function About({ setModelComputer, setModelHead }: any) {
         ScrollTrigger.create({
             start: "top top",
             scrub: true,
-            // trigger: "#about",
+            trigger: "#about",
             // pin: true,
             // end: "+=4000px",
-            // markers: true,
+            markers: true,
             animation: tl,
         });
 
@@ -56,20 +57,20 @@ export default function About({ setModelComputer, setModelHead }: any) {
             1
         );
 
-        let split = SplitText.create("#title-person", {
-            type: "chars,words,lines",
-            linesClass: "chars",
-            autoSplit: true,
-            mask: "chars",
-        });
+        // let split = SplitText.create("#title-person", {
+        //     type: "chars,words,lines",
+        //     linesClass: "chars",
+        //     autoSplit: true,
+        //     mask: "chars",
+        // });
 
-        tl.from(split.chars, {
-            duration: 0.6,
-            xPercent: 100,
-            opacity: 0,
-            stagger: 0.1,
-            ease: "expo.out",
-        }, 1);
+        // tl.from(split.chars, {
+        //     duration: 0.6,
+        //     xPercent: 100,
+        //     opacity: 0,
+        //     stagger: 0.1,
+        //     ease: "expo.out",
+        // }, 1);
 
         // tl.fromTo("#about-text-1", {
         //     scale: 1,
@@ -95,6 +96,7 @@ export default function About({ setModelComputer, setModelHead }: any) {
     });
 
     //LEGO HEAD
+
     useEffect(() => {
         const threeEl: any = document.querySelector(".three-head");
         const aboutEl: any = document.querySelector(".about-media-head");
@@ -154,8 +156,6 @@ export default function About({ setModelComputer, setModelHead }: any) {
             clearInterval(intervalId.current);
 
             const model = gltf.scene;
-
-            setModelHead(gltf.scene);
 
             scene.add(model);
 
@@ -301,206 +301,143 @@ export default function About({ setModelComputer, setModelHead }: any) {
 
     }, []);
 
-    //STARS
-    useEffect(() => {
-        /* ── Canvas stars ── */
-        const canvas: any = document.getElementById('stars');
-        const ctx = canvas.getContext('2d');
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resize();
-
-        window.addEventListener('resize', () => { resize(); buildStars(); });
-
-        // Three layers: tiny/dim, medium, bright
-        const layers = [
-            { count: 350, rMin: 0.3, rMax: 0.8, alphaMin: 0.2, alphaMax: 0.5 },
-            { count: 1500, rMin: 0.7, rMax: 1.4, alphaMin: 0.4, alphaMax: 0.75 },
-            { count: 60, rMin: 1.3, rMax: 2.2, alphaMin: 0.7, alphaMax: 1.0 },
-        ];
-
-        let stars = [];
-
-        function buildStars() {
-            stars = [];
-            layers.forEach(l => {
-                for (let i = 0; i < l.count; i++) {
-                    const hue = Math.random() < 0.2
-                        ? "ocean"   // blue-white
-                        : Math.random() < 0.15
-                            ? `pink`  // warm yellow
-                            : `white`;   // white
-                    stars.push({
-                        x: Math.random() * canvas.width,
-                        y: Math.random() * canvas.height,
-                        r: l.rMin + Math.random() * (l.rMax - l.rMin),
-                        alpha: l.alphaMin + Math.random() * (l.alphaMax - l.alphaMin),
-                        twinkleSpeed: 0.3 + Math.random() * 1.5,
-                        twinkleOffset: Math.random() * Math.PI * 2,
-                        color: hue,
-                        // glow: Math.random() < 0.25,
-                    });
-                }
-            });
-        }
-        buildStars();
-
-        let time = 0;
-        function drawStars(dt) {
-            time += dt;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            stars.forEach(s => {
-                const flicker = 0.6 + 0.4 * Math.sin(time * s.twinkleSpeed + s.twinkleOffset);
-                const a = s.alpha * flicker;
-                ctx.globalAlpha = a;
-
-                if (s.glow) {
-                    const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 5);
-                    g.addColorStop(0, s.color);
-                    g.addColorStop(1, 'transparent');
-                    ctx.fillStyle = g;
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.r * 5, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-
-                ctx.globalAlpha = a;
-                ctx.fillStyle = s.color;
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                ctx.fill();
-            });
-            ctx.globalAlpha = 1;
-        }
-
-        // Animation loop
-        let last = performance.now();
-        function loop(now) {
-            drawStars((now - last) / 1000);
-            last = now;
-            requestAnimationFrame(loop);
-        }
-        requestAnimationFrame(loop);
-    }, [])
-
     return (
-        <div id="about" className='min-h-screen flex justify-center items-center my-10 md:my-0 overflow-hidden'>
+        // <div id="about" className='min-h-screen flex justify-center items-center my-10 md:my-0 overflow-hidden'>
 
-            <div id='background-projects' className='flex overflow-hidden justify-center items-center absolute rounded-full'>
-                <canvas id="stars" className='absolute right-0'></canvas>
+        //     <div id='background-projects' className='flex overflow-hidden justify-center items-center absolute rounded-full'>
+        //         <canvas id="stars" className='absolute right-0'></canvas>
+        //     </div>
+
+        //     <div id="person" className='flex flex-wrap justify-center items-center'>
+        //         <div id="text-about" className='text-gray-300 w-[80%] md:w-[40%] order-2 md:order-1'>
+        //             <h1 className="mb-5 text-3xl md:text-4xl font-bold relative inline-block">
+        //                 {/* Marca texto animado */}
+        //                 <span
+        //                     id='marker'
+        //                     className="absolute -inset-x-2 -inset-y-1 -z-10"
+        //                     style={{
+        //                         background: "#fff",
+        //                         transform: "rotate(-1.5deg) scaleX(0)",
+        //                     }}
+        //                 />
+        //                 <span id="title-person">Um pouco sobre mim</span>
+        //             </h1>
+        //             <div className='font-serif leading-relaxed text-lg'>
+        //                 <p className='mb-5' id='about-text-1'>
+        //                     Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código.
+        //                 </p>
+
+        //                 <p id='about-text-2'>
+        //                     Também tenho uma grande paixão por um bom design em geral (UI, web, tipografia, pixel art, animação, ilustrações isométricas, branding e assim por diante).
+        //                 </p>
+        //             </div>
+        //         </div>
+
+
+
+        //         <div id="3d-about" className='w-[90%] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-head'>
+        //             {/* <Image alt='Face' src={face} className='w-[70%] h-auto md:w-[80%]' /> */}
+        //             <div className='three-head'></div>
+        //         </div>
+        //     </div>
+
+
+        //     <div id="projects" className='absolute flex flex-wrap justify-center items-center h-[100dvh] w-[100dvw]'>
+        //         {/* <h1 id="title-projects" className='absolute top-[25px] text-white text-3xl'>Ferramentas</h1> */}
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" />
+        //             <span>JavaScript</span>
+        //         </div>
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-plain.svg" />
+        //             <span>TypeScript</span>
+        //         </div>
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-plain.svg" />
+        //             <span>mongoDB</span>
+        //         </div>
+
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-plain.svg" />
+        //             <span>Node.js</span>
+        //         </div>
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <i className="devicon-express-original"></i>
+        //             <span>Express</span>
+        //         </div>
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <i className="devicon-amazonwebservices-plain-wordmark"></i>
+        //             <span>AWS</span>
+        //         </div>
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <i className="devicon-angular-plain"></i>
+        //             <span>Angular</span>
+        //         </div>
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <i className="devicon-jest-plain colored"></i>
+        //             <span>Jest</span>
+        //         </div>
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <i className="devicon-tailwindcss-original colored"></i>
+        //             <span>Tailwind</span>
+        //         </div>
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <i className="devicon-docker-plain colored"></i>
+        //             <span>Docker</span>
+        //         </div>
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" />
+        //             <span>Vite</span>
+        //         </div>
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" />
+        //             <span>React</span>
+        //         </div>
+
+        //         <div className='tools-icon w-[50px] text-white'>
+        //             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ionic/ionic-original.svg" />
+        //             <span>Ionic</span>
+        //         </div>
+
+
+        //         <div id="3d-pc" className='w-[500px] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-pc'>
+        //             <div className='three-pc'></div>
+        //         </div>
+        //     </div>
+        // </div>
+
+        <div id='about' className='flex justify-center items-center overflow-hidden w-[100%]'>
+            <div id="text-about" className=''>
+                <h1 className="text-[100px] font-bold w-[250px] leading-[100px] text-white">
+                    SOBRE
+                    <span className='block text-[DeepPink]'>MIM</span>
+                </h1>
+                <p className='font-serif leading-relaxed w-[500px] text-white text-[24px]'>
+                    Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código.
+                </p>
+
+                <Image src={moon} alt='moon'/>
             </div>
 
-            <div id="person" className='flex flex-wrap justify-center items-center'>
-                <div id="text-about" className='text-gray-300 w-[80%] md:w-[40%] order-2 md:order-1'>
-                    <h1 className="mb-5 text-3xl md:text-4xl font-bold relative inline-block">
-                        {/* Marca texto animado */}
-                        <span
-                            id='marker'
-                            className="absolute -inset-x-2 -inset-y-1 -z-10"
-                            style={{
-                                background: "#fff",
-                                transform: "rotate(-1.5deg) scaleX(0)",
-                            }}
-                        />
-                        <span id="title-person">Um pouco sobre mim</span>
-                    </h1>
-                    <div className='font-serif leading-relaxed text-lg'>
-                        <p className='mb-5' id='about-text-1'>
-                            Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código.
-                        </p>
-
-                        <p id='about-text-2'>
-                            Também tenho uma grande paixão por um bom design em geral (UI, web, tipografia, pixel art, animação, ilustrações isométricas, branding e assim por diante).
-                        </p>
-                    </div>
-                </div>
 
 
-
-                <div id="3d-about" className='w-[90%] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-head'>
-                    {/* <Image alt='Face' src={face} className='w-[70%] h-auto md:w-[80%]' /> */}
-                    <div className='three-head'></div>
-                </div>
+            <div id="3d-about" className='w-[90%] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-head'>
+                <div className='three-head'></div>
+                {/* <Image alt='Face' src={face} className='w-[70%] h-auto md:w-[80%]' /> */}
             </div>
 
-
-            <div id="projects" className='absolute flex flex-wrap justify-center items-center h-[100dvh] w-[100dvw]'>
-                {/* <h1 id="title-projects" className='absolute top-[25px] text-white text-3xl'>Ferramentas</h1> */}
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" />
-                    <span>JavaScript</span>
-                </div>
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-plain.svg" />
-                    <span>TypeScript</span>
-                </div>
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-plain.svg" />
-                    <span>mongoDB</span>
-                </div>
-
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-plain.svg" />
-                    <span>Node.js</span>
-                </div>
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <i className="devicon-express-original"></i>
-                    <span>Express</span>
-                </div>
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <i className="devicon-amazonwebservices-plain-wordmark"></i>
-                    <span>AWS</span>
-                </div>
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <i className="devicon-angular-plain"></i>
-                    <span>Angular</span>
-                </div>
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <i className="devicon-jest-plain colored"></i>
-                    <span>Jest</span>
-                </div>
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <i className="devicon-tailwindcss-original colored"></i>
-                    <span>Tailwind</span>
-                </div>
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <i className="devicon-docker-plain colored"></i>
-                    <span>Docker</span>
-                </div>
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" />
-                    <span>Vite</span>
-                </div>
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" />
-                    <span>React</span>
-                </div>
-
-                <div className='tools-icon w-[50px] text-white'>
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ionic/ionic-original.svg" />
-                    <span>Ionic</span>
-                </div>
-
-                
-                <div id="3d-pc" className='w-[500px] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-pc'>
-                    <div className='three-pc'></div>
-                </div>
-            </div>
         </div>
     )
 }
