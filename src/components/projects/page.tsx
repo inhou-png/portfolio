@@ -36,7 +36,7 @@ export default function Projects() {
         const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setClearColor(0x000000, 0);
 
-        renderer.setSize(1000, 1000);
+        renderer.setSize(window.innerWidth/2, window.innerWidth/2);
         threeEl.appendChild(renderer.domElement);
 
         camera.position.set(1, 1, 5);
@@ -116,24 +116,25 @@ export default function Projects() {
     }, []);
 
     return (
-        <div className='absolute flex justify-center items-center z-[99] overflow-hidden w-[100%]'>
-            <div className='text-project absolute flex justify-center items-center w-[600px] left-10' id="text-project-left">
-                <p className="text-white font-bold text-[100px] whitespace-normal w-[100%]">
-                    <span className='block'>STRUCTURE DATA</span>
-                    <span className='block'>DESIGN SYSTEM</span>
-                    <span className='block'>TESTS</span>
+        <div className='absolute flex justify-center items-center z-[99] w-[100%]'>
+
+            <div className='absolute text-project flex justify-center items-center left-10' id="text-project-left">
+                <p className="text-white font-bold text-[4dvw] whitespace-normal w-[100%]">
+                    <span className='block scramble text-project-1' id="aaa">STRUCTURE DATA</span>
+                    <span className='block scramble text-project-2'>DESIGN SYSTEM</span>
+                    <span className='block scramble text-project-3'>TESTS</span>
                 </p>
             </div>
 
-            <div id="3d" className='flex justify-center z-[2]'>
-                <div className='three-pc' id='pc'></div>
+            <div id="pc" className='flex justify-center z-[2]'>
+                <div className='three-pc'></div>
             </div>
 
-            <div className='text-project absolute flex justify-center items-center w-[600px] right-10' id="text-project-right">
-                <p className="text-white font-bold text-[100px] whitespace-normal w-[100%] rtl" dir="rtl">
-                    <span className='block'>AGILE methodologies</span>
-                    <span className='block'>PERSISTENCE</span>
-                    <span className='block'>TIME MANEGEMENT</span>
+            <div className='text-project absolute flex justify-center items-center right-10' id="text-project-right">
+                <p className="text-white font-bold text-[4dvw] whitespace-normal w-[100%] rtl" dir="rtl">
+                    <span className='block scramble text-project-3'>STRUCTURE DATA</span>
+                    <span className='block scramble text-project-2'>DESIGN SYSTEM</span>
+                    <span className='block scramble text-project-1'>TESTS</span>
                 </p>
             </div>
         </div>

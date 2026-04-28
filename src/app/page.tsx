@@ -41,10 +41,11 @@ function buildBlocks(w: number, h: number, bs: number) {
 
 export default function Home() {
   const blockSize = 50;
+  // const blockColor = "DeepPink";
   const blockColor = "blue";
 
+
   const canvasRef = useRef(null);
-  const [visible, setVisible] = useState(false);
 
   //GSAP
   useGSAP(() => {
@@ -116,85 +117,6 @@ export default function Home() {
       },
     }, 0.2);
 
-    //FIRST TIME
-    // tl.to("#text-about", {
-    //   xPercent: -150,
-    //   // opacity: 0,
-    //   ease: "power3.inOut"
-    // }, 0.2);
-
-    // tl.to(".three-head", {
-    //   yPercent: 150,
-    //   // xPercent: -120,
-    //   // scale: 50,
-    //   // opacity: 0,
-    //   // rotate: 360,
-    //   ease: "power3.inOut",
-    //   onStart: () => {
-    //     //trocar face da cabeça de lego
-    //     console.log("modelHead", modelHead);
-    //   }
-    // }, 0.2);
-
-    // let scaleBgProjects = 4;
-    // tl.fromTo("#background-projects", {
-    //   width: 0,
-    //   height: 0,
-    //   bottom: -100,
-    //   right: 0,
-    //   backgroundColor: "#000",
-    //   scale: 0,
-    //   // transformOrigin: "bottom right",
-    //   // background: "radial-gradient(circle at 150% 150%, hsla(295, 70%, 40%, 0.55) 0%, hsla(295, 70%, 40%, 0.28) 0%, transparent 0%), radial-gradient(circle at 150% 150%,  hsla(316, 85%, 55%, 1) 0%, hsla(316, 85%, 55%, 0.70) 40%, transparent 80%), transparent",
-    //   // background: "radial-gradient(circle at 50% 130%, hsla(295, 70%, 40%, 0.55) 0%, hsla(295, 70%, 40%, 0.28) 35%, transparent 60%), radial-gradient(circle at 50% 88%,  hsla(316, 85%, 55%, 1) 0%, hsla(316, 85%, 55%, 0.70) 40%, transparent 80%),hsl(330, 75%, 88%)",
-    //   // background: "radial-gradient(circle at 50% 62%, hsla(178, 82%, 60%, 0.70) 0%, hsla(178, 82%, 60%, 0.42) 30%, transparent 44%),radial-gradient(circle at 50% 80%, hsla(278, 70%, 35%, 0.80) 0%, hsla(278, 70%, 35%, 0.40) 35%, transparent 68%),radial-gradient(circle at 50% 62%, hsla(300, 90%, 50%, 1)    0%, hsla(300, 90%, 50%, 0.70) 40%, transparent 90%),hsl(315, 70%, 82%)",
-    // }, {
-    //   width: "100vh",
-    //   height: "100vh",
-    //   bottom: 0,
-    //   scale: scaleBgProjects,
-    //   // ease: "power3.inOut",
-    // }, "<");
-
-    //stars
-    // tl.fromTo("#stars", {
-    //   scale: 1,
-    //   left: "-100vh",
-    //   // left: "-110%",
-    //   borderRadius: "100%",
-    //   onUpdate: ScrollTrigger.update
-    // }, {
-    //   scale: 1 / scaleBgProjects,
-    //   left: "-68vh",
-    //   // left: "-68%",
-    //   borderRadius: "0%",
-    //   onUpdate: ScrollTrigger.update
-    // }, "<");
-
-    //tools
-    // const toolsIcons = document.querySelectorAll(".tools-icon");
-    // for (let tool of toolsIcons) {
-    //   gsap.to(tool, {
-    //     yPercent: Math.floor(Math.random() * (-30 - 30 + 1)) + 30,
-    //     xPercent: Math.floor(Math.random() * (-30 - 30 + 1)) + 30,
-    //     yoyo: true,
-    //     ease: "power1.inOut",
-    //     duration: 3,
-    //     repeat: -1,
-    //   })
-    // }
-
-
-    //SECOND TIME
-    // tl.fromTo("#card-about", {
-    //   yPercent: 120,
-    //   opacity: 0,
-    // }, {
-    //   yPercent: 0,
-    //   opacity: 1,
-    //   ease: "power3.inOut"
-    // }, "-=0.3");
-
     tl.fromTo(".three-pc", {
       scale: 0,
     }, {
@@ -216,7 +138,6 @@ export default function Home() {
       ease: "power3.inOut"
     }, "<")
 
-
     tl.fromTo("#text-project-right", {
       xPercent: 200,
     }, {
@@ -224,20 +145,32 @@ export default function Home() {
       ease: "power3.inOut"
     }, "<")
 
-    // tl.to("#card-about", {
-    //   xPercent: -200,
-    //   scale: 2,
-    //   opacity: 1,
-    //   ease: "power3.inOut"
-    // }, 0.8);
+    tl.to(".scramble", {
+      fontSize: "10dvw",
+      scrambleText: {
+        text: "SCROLLING",
+        // chars:"01",
+      },
+      onComplete: () => {
+        // gsap.to("#aaa", {
+        //   color: "deeppink",
+        //   duration: 1,
+        //   ease: "steps(1)",
+        //   // yoyo: true,
+        //   repeat: -1,
+        // });
 
-    tl.to(".three-pc", {
+      },
+      ease: "power3.inOut",
+    }, "+=0.1")
+
+
+    tl.to("#pc", {
       opacity: 1,
       scale: 10,
       yPercent: 100,
       ease: "power3.inOut"
-    }, "+=1");
-
+    }, ">");
 
 
     //SYSTEM OS
@@ -333,7 +266,7 @@ export default function Home() {
           const hue = Math.random() < 0.2
             ? "white"
             : Math.random() < 0.15
-              ? `pink`
+              ? `deeppink`
               : `white`;
           stars.push({
             x: Math.random() * canvas.width,
@@ -343,7 +276,7 @@ export default function Home() {
             twinkleSpeed: 0.3 + Math.random() * 1.5,
             twinkleOffset: Math.random() * Math.PI * 2,
             color: hue,
-            // glow: Math.random() < 0.25,
+            glow: Math.random() < 0.25,
           });
         }
       });

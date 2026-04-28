@@ -58,46 +58,7 @@ export default function About() {
             duration: 3,
             repeat: -1,
         })
-
-        // let split = SplitText.create("#title-person", {
-        //     type: "chars,words,lines",
-        //     linesClass: "chars",
-        //     autoSplit: true,
-        //     mask: "chars",
-        // });
-
-        // tl.from(split.chars, {
-        //     duration: 0.6,
-        //     xPercent: 100,
-        //     opacity: 0,
-        //     stagger: 0.1,
-        //     ease: "expo.out",
-        // }, 1);
-
-        // tl.fromTo("#about-text-1", {
-        //     scale: 1,
-        // }, {
-        //     scale: 1,
-        //     scrambleText: {
-        //         text: "Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código.",
-        //     chars: "001"
-        //   },
-        //     ease: "power3.inOut"
-        // }, ">");
-
-        // tl.fromTo("#about-text-2", {
-        //     scale: 1,
-        // }, {
-        //     scale: 1,
-        //     scrambleText: {
-        //         text: "Também tenho uma grande paixão por um bom design em geral (UI, web, tipografia, pixel art, animação, ilustrações isométricas, branding e assim por diante).",
-        //         chars: "001"
-        //     },
-        //     ease: "power3.inOut"
-        // }, ">");
     });
-
-    //LEGO HEAD
 
     useEffect(() => {
         const threeEl: any = document.querySelector(".three-head");
@@ -205,22 +166,20 @@ export default function About() {
         };
     }, []);
 
-    
-
     return (
         <div id='about' className='flex justify-center items-center w-[100%] relative'>
-            <div id="text-about" className=''>
-                <h1 className="text-[100px] font-bold w-[250px] leading-[100px] text-gray-300">
+            <div id="text-about" className='relative flex flex-col gap-[25px]'>
+                <h1 className="text-[5dvw] font-bold w-[250px] leading-[4dvw] text-white">
                     ABOUT
                     <span className='block text-[DeepPink]'>ME</span>
                 </h1>
 
-                <p className='leading-relaxed w-[600px] text-gray-300 text-[24px]'>
+                <p className='leading-relaxed w-[35dvw] text-gray-300 text-[1.3dvw]'>
                     {/* Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código. */}
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eveniet similique accusantium provident soluta ex neque eum, repellat ullam, at, tenetur voluptatibus eligendi consequatur eos ut quae possimus deleniti assumenda?
                 </p>
 
-                <Image src={moon} alt='moon' className='w-[500px] absolute bottom-[-450px]' id='moon' />
+                <Image src={moon} alt='moon' className='w-[50dvw] absolute top-[50dvh]' id='moon' />
             </div>
 
             <div id="3d-about" className='w-[90%] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-head'>
