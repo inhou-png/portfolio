@@ -69,7 +69,7 @@ export default function Home() {
     ScrollTrigger.create({
       trigger: "#pin",
       start: "top top",
-      end: "+=2000px",
+      end: "+=4000px",
       pin: true,
       scrub: true,
       // markers: true,
@@ -202,24 +202,27 @@ export default function Home() {
       ease: "power3.inOut"
     }, "-=0.4");
 
-    // tl.fromTo(".tools-icon", {
-    //   scale: 0,
-    // }, {
-    //   scale: 1,
-    //   ease: "power3.inOut"
-    // }, "+=0.1");
+    tl.fromTo(".text-project", {
+      scale: 0,
+    }, {
+      scale: 1,
+      ease: "power3.inOut"
+    }, "<")
 
-    // tl.fromTo("#title-projects", {
-    //   scale: 0,
-    // }, {
-    //   scale: 1,
-    //   scrambleText: {
-    //     text: "FERRAMENTAS",
-    //     chars: "001"
-    //   },
-    //   ease: "power3.inOut"
-    // }, "-=0.4");
+    tl.fromTo("#text-project-left", {
+      xPercent: -200,
+    }, {
+      xPercent: 0,
+      ease: "power3.inOut"
+    }, "<")
 
+
+    tl.fromTo("#text-project-right", {
+      xPercent: 200,
+    }, {
+      xPercent: 0,
+      ease: "power3.inOut"
+    }, "<")
 
     // tl.to("#card-about", {
     //   xPercent: -200,
@@ -228,84 +231,77 @@ export default function Home() {
     //   ease: "power3.inOut"
     // }, 0.8);
 
-    // const threePcEl: any = document.querySelector(".three-pc");
-    // tl.to(".three-pc", {
-    //   x: () => (window.innerWidth / 4 - threePcEl?.offsetWidth / 5) * -1,
-    //   opacity: 1,
-    //   scale: 2,
-    //   ease: "power3.inOut"
-    // }, 0.8);
-    // tl.to(".three-pc",
-    //   {
-    //     yPercent: 125,
-    //     scale: 10,
-    //     ease: "none",
-    //     duration: 0.2
-    //   }, ">");
+    tl.to(".three-pc", {
+      opacity: 1,
+      scale: 10,
+      yPercent: 100,
+      ease: "power3.inOut"
+    }, "+=1");
 
 
-    // //SYSTEM OS
-    // const macLoader: any = gsap.to("#mac-loader", {
-    //   scale: 0.8,
-    //   yoyo: true,
-    //   repeat: -1,
-    //   duration: 1,
-    //   ease: "power1.inOut",
-    //   paused: true,
-    //   opacity: 1,
-    // });
 
-    // tl.to("#test-os", {
-    //   opacity: 1,
-    //   display: "block",
-    //   ease: "none",
-    //   duration: 0,
-    //   onComplete: () => {
-    //     gsap.set("#desktop", { opacity: 0 });
-    //     const bootTl = gsap.timeline();
+    //SYSTEM OS
+    const macLoader: any = gsap.to("#mac-loader", {
+      scale: 0.8,
+      yoyo: true,
+      repeat: -1,
+      duration: 1,
+      ease: "power1.inOut",
+      paused: true,
+      opacity: 1,
+    });
 
-    //     bootTl
-    //       .add(() => macLoader.play())
+    tl.to("#test-os", {
+      opacity: 1,
+      display: "block",
+      ease: "none",
+      duration: 0,
+      onComplete: () => {
+        gsap.set("#desktop", { opacity: 0 });
+        const bootTl = gsap.timeline();
 
-    //       .to({}, { duration: 2 }) // espera 2s
+        bootTl
+          .add(() => macLoader.play())
 
-    //       .add(() => macLoader.pause())
+          .to({}, { duration: 2 }) // espera 2s
 
-    //       .to("#mac-loader", { opacity: 0, duration: 0.5 })
+          .add(() => macLoader.pause())
 
-    //       .to("#mac-welcome", { opacity: 1, duration: 0.5 })
+          .to("#mac-loader", { opacity: 0, duration: 0.5 })
 
-    //       .to({}, { duration: 2 }) // espera 2s
+          .to("#mac-welcome", { opacity: 1, duration: 0.5 })
 
-    //       .to("#mac-welcome", { opacity: 0, duration: 0.5 })
+          .to({}, { duration: 2 }) // espera 2s
 
-    //       .to("#desktop", { opacity: 1, duration: 0.5 });
-    //   }
-    // }, ">");
+          .to("#mac-welcome", { opacity: 0, duration: 0.5 })
 
-    // Draggable.create(".tools-icon", {
-    //   bounds: "#about",
-    //   inertia: true
-    // });
+          .to("#desktop", { opacity: 1, duration: 0.5 });
+      }
+    }, ">");
 
-    // Draggable.create(".drag-item", {
-    //   type: "x,y",
-    //   bounds: ".drag-zone",
-    //   onDragStart: function () {
-    //     console.log(this.target);
-    //     gsap.set(this.target.querySelector("span"), {
-    //       background: "black",
-    //       color: "white"
-    //     });
-    //   },
-    //   onDragEnd: function () {
-    //     console.log(this.target);
-    //     gsap.set(this.target.querySelector("span"), {
-    //       background: "white",
-    //       color: "black"
-    //     });
-    //   }
-    // });
+    Draggable.create(".tools-icon", {
+      bounds: "#about",
+      inertia: true
+    });
+
+    Draggable.create(".drag-item", {
+      type: "x,y",
+      bounds: ".drag-zone",
+      onDragStart: function () {
+        console.log(this.target);
+        gsap.set(this.target.querySelector("span"), {
+          background: "black",
+          color: "white"
+        });
+      },
+      onDragEnd: function () {
+        console.log(this.target);
+        gsap.set(this.target.querySelector("span"), {
+          background: "white",
+          color: "black"
+        });
+      }
+    });
   });
 
   //STARS
@@ -411,7 +407,7 @@ export default function Home() {
         <System />
       </div>
 
-      {/* <FixedItems /> */}
+      <FixedItems />
     </main>
   )
 }

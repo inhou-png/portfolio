@@ -116,17 +116,25 @@ export default function Projects() {
     }, []);
 
     return (
-        <div className='absolute flex justify-center items-center z-[99]'>
-            <div className='text-project'>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, quia consequuntur! Distinctio, officiis. Quidem nisi, voluptatem corrupti quas numquam, dignissimos quae aut sint ducimus iusto recusandae alias magni excepturi libero.</p>
+        <div className='absolute flex justify-center items-center z-[99] overflow-hidden w-[100%]'>
+            <div className='text-project absolute flex justify-center items-center w-[600px] left-10' id="text-project-left">
+                <p className="text-white font-bold text-[100px] whitespace-normal w-[100%]">
+                    <span className='block'>STRUCTURE DATA</span>
+                    <span className='block'>DESIGN SYSTEM</span>
+                    <span className='block'>TESTS</span>
+                </p>
             </div>
 
-            <div id="3d" className='flex justify-center'>
+            <div id="3d" className='flex justify-center z-[2]'>
                 <div className='three-pc' id='pc'></div>
             </div>
 
-            <div className='text-project'>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, quia consequuntur! Distinctio, officiis. Quidem nisi, voluptatem corrupti quas numquam, dignissimos quae aut sint ducimus iusto recusandae alias magni excepturi libero.</p>
+            <div className='text-project absolute flex justify-center items-center w-[600px] right-10' id="text-project-right">
+                <p className="text-white font-bold text-[100px] whitespace-normal w-[100%] rtl" dir="rtl">
+                    <span className='block'>AGILE methodologies</span>
+                    <span className='block'>PERSISTENCE</span>
+                    <span className='block'>TIME MANEGEMENT</span>
+                </p>
             </div>
         </div>
     )
