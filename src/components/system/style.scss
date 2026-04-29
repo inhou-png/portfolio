@@ -109,7 +109,7 @@
             padding: 25px;
 
 
-            @for $i from 1 through 2 {
+            @for $i from 1 through 3 {
                 .drag-item:nth-child(#{$i}) {
                     position: absolute;
                     right: 25px;
@@ -135,7 +135,7 @@
                 position: absolute;
                 background: #fff;
                 width: 600px;
-                height: 400px;
+                min-height: 400px;
                 border: 2px solid #000;
                 display: none;
 
@@ -199,13 +199,24 @@
                     .itens {
                         display: flex;
                         padding: 25px;
-                        gap: 25px;
+                        gap: 50px;
                         flex-wrap: wrap;
 
                         >div {
                             display: flex;
                             flex-direction: column;
                             align-items: center;
+
+                            figure {
+                                display: flex;
+                                width: auto;
+
+                                img {
+                                    width: 60px;
+                                    height: 60px;
+                                    object-fit: contain;
+                                }
+                            }
 
                             span {
                                 font-family: chicago;

@@ -17,14 +17,14 @@ export default function Intro() {
 
     return (
         <div className='min-h-screen flex justify-center items-center overflow-hidden px-0 md:px-20'>
-            <div className='text-gray-500 flex md:flex-nowrap flex-wrap md:justify-between justify-center md:w-auto w-[90%] '>
+            <div className='text-gray-300 flex md:flex-nowrap flex-wrap md:justify-between justify-center md:w-auto w-[90%] '>
                 <div className='order-2 md:order-1 md:text-left text-center mt-10 md:mt-0'>
                     <h1 className='font-extralight whitespace-nowrap text-[4dvw]'>
-                        Olá, sou <strong className='text-gray-300 font-semibold'>Fabio Brasil
+                        Hi, i'm <strong className='text-white font-semibold'>Fabio Brasil
                             <Image alt='Waving Hand' src={Waving_Hand} className='inline w-[1.5ch] h-[1.5ch] ml-[0.5ch] align-center' />
                         </strong>
                     </h1>
-                    <h3 className='text-base text-[1.3dvw] mb-5'>I'm a Full-Stack developer from São Paulo/Brazil.</h3>
+                    <h3 className='text-base text-[1.5dvw] mb-5'>I'm a Full-Stack developer from São Paulo/Brazil.</h3>
                     <div className='flex md:justify-start justify-center'>
                         <Link href="https://github.com/inhou-png" target='_blank'>
                             <Image alt='GitHub' src={GitHub} className='md:w-9 xl:w-10 mr-6 w-8 hover:opacity-70 transition-all cursor-pointer' />

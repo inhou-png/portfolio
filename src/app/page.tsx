@@ -221,14 +221,12 @@ export default function Home() {
       type: "x,y",
       bounds: ".drag-zone",
       onDragStart: function () {
-        console.log(this.target);
         gsap.set(this.target.querySelector("span"), {
           background: "black",
           color: "white"
         });
       },
       onDragEnd: function () {
-        console.log(this.target);
         gsap.set(this.target.querySelector("span"), {
           background: "white",
           color: "black"

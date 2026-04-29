@@ -71,7 +71,6 @@ export default function Projects() {
 
                 model.position.sub(center);
 
-                console.log("Modelo carregado!");
             },
             (xhr) => {
                 if (xhr.total > 0) {

@@ -115,7 +115,6 @@ export default function About() {
         });
 
         loader.load("/Head/Head.gltf", (gltf) => {
-            console.log("intervalId.current", intervalId.current);
             clearInterval(intervalId.current);
 
             const model = gltf.scene;

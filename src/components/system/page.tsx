@@ -1,9 +1,20 @@
 import "./style.scss";
 import { useRef } from "react";
 import Image from "next/image";
-
+import Link from "next/link";
 //icons
-import ts from "@/icons/ts.png"
+import angular from "@/images/ANGULAR.png"
+import react from "@/images/REACT.png"
+import ts from "@/images/ts.png"
+import jest from "@/images/JEST.png"
+import sass from "@/images/SASS.png"
+import gsap from "@/images/GSAP.png"
+import mongo from "@/images/MONGO.png"
+import ex from "@/images/EXPRESS.png"
+import tail from "@/images/TAILWIND.png"
+import aws from "@/images/AWS.png"
+import docker from "@/images/DOCKER.png"
+
 export default function System() {
     const webProjectsRef = useRef(null);
     const stacksRef = useRef(null);
@@ -25,7 +36,7 @@ export default function System() {
                 <div id="mac-welcome">
                     <div className="welcome_screen">
                         <div className="welcome_illustration"></div>
-                        <span>Welcome to Macintosh</span>
+                        <span>Welcome to my Portfolio</span>
                     </div>
                 </div>
             </div>
@@ -33,10 +44,19 @@ export default function System() {
             <div id="desktop">
                 <div className="header">
                     <ul>
-                        <li>File</li>
+                        {/* <li>File</li>
                         <li>Edit</li>
                         <li>View</li>
-                        <li>Special</li>
+                        <li>Special</li> */}
+                        <Link href="https://github.com/inhou-png" target='_blank'>
+                            <li>GitHub</li>
+                        </Link>
+                        <Link href="https://www.linkedin.com/in/fabio-brasil-540407176/" target='_blank'>
+                            <li>Linkedin</li>
+                        </Link>
+                        <Link href="mailto:fabiobrasilwork@outlook.com" target='_blank'>
+                            <li>Email</li>
+                        </Link>
                     </ul>
                 </div>
 
@@ -66,6 +86,453 @@ export default function System() {
                         </figure>
 
                         <span>Stacks</span>
+                    </div>
+
+                    <div className="drag-item" onClick={() => {
+                    }}>
+                        <figure id="folder" className="icon folder">
+                            <svg width="60" height="60" viewBox="0 0 100 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100" height="128" fill="white" />
+                                <path d="M0 4H4V8H0V4Z" fill="#212121" />
+                                <path d="M0 0H4V4H0V0Z" fill="#212121" />
+                                <path d="M4 0H8V4H4V0Z" fill="#212121" />
+                                <path d="M8 0H12V4H8V0Z" fill="#212121" />
+                                <path d="M12 0H16V4H12V0Z" fill="#212121" />
+                                <path d="M16 0H20V4H16V0Z" fill="#212121" />
+                                <path d="M20 0H24V4H20V0Z" fill="#212121" />
+                                <path d="M24 0H28V4H24V0Z" fill="#212121" />
+                                <path d="M28 0H32V4H28V0Z" fill="#212121" />
+                                <path d="M32 0H36V4H32V0Z" fill="#212121" />
+                                <path d="M36 0H40V4H36V0Z" fill="#212121" />
+                                <path d="M40 0H44V4H40V0Z" fill="#212121" />
+                                <path d="M44 0H48V4H44V0Z" fill="#212121" />
+                                <path d="M48 0H52V4H48V0Z" fill="#212121" />
+                                <path d="M52 0H56V4H52V0Z" fill="#212121" />
+                                <path d="M56 0H60V4H56V0Z" fill="#212121" />
+                                <path d="M60 0H64V4H60V0Z" fill="#212121" />
+                                <path d="M64 0H68V4H64V0Z" fill="#212121" />
+                                <path d="M68 0H72V4H68V0Z" fill="#212121" />
+                                <path d="M72 0H76V4H72V0Z" fill="#212121" />
+                                <path d="M76 4H80V8H76V4Z" fill="#212121" />
+                                <path d="M80 8H84V12H80V8Z" fill="#212121" />
+                                <path d="M84 12H88V16H84V12Z" fill="#212121" />
+                                <path d="M88 16H92V20H88V16Z" fill="#212121" />
+                                <path d="M92 20H96V24H92V20Z" fill="#212121" />
+                                <path d="M96 24H100V28H96V24Z" fill="#212121" />
+                                <path d="M96 28H100V32H96V28Z" fill="#212121" />
+                                <path d="M96 32H100V36H96V32Z" fill="#212121" />
+                                <path d="M96 36H100V40H96V36Z" fill="#212121" />
+                                <path d="M96 40H100V44H96V40Z" fill="#212121" />
+                                <path d="M96 44H100V48H96V44Z" fill="#212121" />
+                                <path d="M96 48H100V52H96V48Z" fill="#212121" />
+                                <path d="M96 52H100V56H96V52Z" fill="#212121" />
+                                <path d="M96 56H100V60H96V56Z" fill="#212121" />
+                                <path d="M96 60H100V64H96V60Z" fill="#212121" />
+                                <path d="M96 64H100V68H96V64Z" fill="#212121" />
+                                <path d="M96 68H100V72H96V68Z" fill="#212121" />
+                                <path d="M96 72H100V76H96V72Z" fill="#212121" />
+                                <path d="M96 76H100V80H96V76Z" fill="#212121" />
+                                <path d="M96 80H100V84H96V80Z" fill="#212121" />
+                                <path d="M96 84H100V88H96V84Z" fill="#212121" />
+                                <path d="M96 88H100V92H96V88Z" fill="#212121" />
+                                <path d="M96 92H100V96H96V92Z" fill="#212121" />
+                                <path d="M96 96H100V100H96V96Z" fill="#212121" />
+                                <path d="M96 100H100V104H96V100Z" fill="#212121" />
+                                <path d="M96 104H100V108H96V104Z" fill="#212121" />
+                                <path d="M96 108H100V112H96V108Z" fill="#212121" />
+                                <path d="M96 112H100V116H96V112Z" fill="#212121" />
+                                <path d="M96 116H100V120H96V116Z" fill="#212121" />
+                                <path d="M96 120H100V124H96V120Z" fill="#212121" />
+                                <path d="M96 124H100V128H96V124Z" fill="#212121" />
+                                <path d="M92 124H96V128H92V124Z" fill="#212121" />
+                                <path d="M88 124H92V128H88V124Z" fill="#212121" />
+                                <path d="M84 124H88V128H84V124Z" fill="#212121" />
+                                <path d="M80 124H84V128H80V124Z" fill="#212121" />
+                                <path d="M76 124H80V128H76V124Z" fill="#212121" />
+                                <path d="M72 124H76V128H72V124Z" fill="#212121" />
+                                <path d="M68 124H72V128H68V124Z" fill="#212121" />
+                                <path d="M64 124H68V128H64V124Z" fill="#212121" />
+                                <path d="M60 124H64V128H60V124Z" fill="#212121" />
+                                <path d="M56 124H60V128H56V124Z" fill="#212121" />
+                                <path d="M52 124H56V128H52V124Z" fill="#212121" />
+                                <path d="M48 124H52V128H48V124Z" fill="#212121" />
+                                <path d="M44 124H48V128H44V124Z" fill="#212121" />
+                                <path d="M40 124H44V128H40V124Z" fill="#212121" />
+                                <path d="M36 124H40V128H36V124Z" fill="#212121" />
+                                <path d="M32 124H36V128H32V124Z" fill="#212121" />
+                                <path d="M28 124H32V128H28V124Z" fill="#212121" />
+                                <path d="M24 124H28V128H24V124Z" fill="#212121" />
+                                <path d="M20 124H24V128H20V124Z" fill="#212121" />
+                                <path d="M16 124H20V128H16V124Z" fill="#212121" />
+                                <path d="M12 124H16V128H12V124Z" fill="#212121" />
+                                <path d="M8 124H12V128H8V124Z" fill="#212121" />
+                                <path d="M92 24H96V28H92V24Z" fill="#212121" />
+                                <path d="M88 24H92V28H88V24Z" fill="#212121" />
+                                <path d="M84 24H88V28H84V24Z" fill="#212121" />
+                                <path d="M80 24H84V28H80V24Z" fill="#212121" />
+                                <path d="M76 24H80V28H76V24Z" fill="#212121" />
+                                <path d="M72 24H76V28H72V24Z" fill="#212121" />
+                                <path d="M72 20H76V24H72V20Z" fill="#212121" />
+                                <path d="M68 20H72V24H68V20Z" fill="#212121" />
+                                <path d="M64 20H68V24H64V20Z" fill="#212121" />
+                                <path d="M60 20H64V24H60V20Z" fill="#212121" />
+                                <path d="M52 20H56V24H52V20Z" fill="#212121" />
+                                <path d="M48 20H52V24H48V20Z" fill="#212121" />
+                                <path d="M44 20H48V24H44V20Z" fill="#212121" />
+                                <path d="M40 20H44V24H40V20Z" fill="#212121" />
+                                <path d="M32 20H36V24H32V20Z" fill="#212121" />
+                                <path d="M28 20H32V24H28V20Z" fill="#212121" />
+                                <path d="M24 20H28V24H24V20Z" fill="#212121" />
+                                <path d="M24 28H28V32H24V28Z" fill="#212121" />
+                                <path d="M32 28H36V32H32V28Z" fill="#212121" />
+                                <path d="M36 28H40V32H36V28Z" fill="#212121" />
+                                <path d="M40 28H44V32H40V28Z" fill="#212121" />
+                                <path d="M48 28H52V32H48V28Z" fill="#212121" />
+                                <path d="M52 28H56V32H52V28Z" fill="#212121" />
+                                <path d="M56 28H60V32H56V28Z" fill="#212121" />
+                                <path d="M60 28H64V32H60V28Z" fill="#212121" />
+                                <path d="M64 28H68V32H64V28Z" fill="#212121" />
+                                <path d="M20 28H24V32H20V28Z" fill="#212121" />
+                                <path d="M16 28H20V32H16V28Z" fill="#212121" />
+                                <path d="M16 36H20V40H16V36Z" fill="#212121" />
+                                <path d="M20 36H24V40H20V36Z" fill="#212121" />
+                                <path d="M24 36H28V40H24V36Z" fill="#212121" />
+                                <path d="M28 36H32V40H28V36Z" fill="#212121" />
+                                <path d="M32 36H36V40H32V36Z" fill="#212121" />
+                                <path d="M40 36H44V40H40V36Z" fill="#212121" />
+                                <path d="M44 36H48V40H44V36Z" fill="#212121" />
+                                <path d="M48 36H52V40H48V36Z" fill="#212121" />
+                                <path d="M52 36H56V40H52V36Z" fill="#212121" />
+                                <path d="M56 36H60V40H56V36Z" fill="#212121" />
+                                <path d="M60 36H64V40H60V36Z" fill="#212121" />
+                                <path d="M68 36H72V40H68V36Z" fill="#212121" />
+                                <path d="M72 36H76V40H72V36Z" fill="#212121" />
+                                <path d="M76 36H80V40H76V36Z" fill="#212121" />
+                                <path d="M76 44H80V48H76V44Z" fill="#212121" />
+                                <path d="M72 44H76V48H72V44Z" fill="#212121" />
+                                <path d="M68 44H72V48H68V44Z" fill="#212121" />
+                                <path d="M64 44H68V48H64V44Z" fill="#212121" />
+                                <path d="M56 44H60V48H56V44Z" fill="#212121" />
+                                <path d="M52 44H56V48H52V44Z" fill="#212121" />
+                                <path d="M48 44H52V48H48V44Z" fill="#212121" />
+                                <path d="M40 44H44V48H40V44Z" fill="#212121" />
+                                <path d="M36 44H40V48H36V44Z" fill="#212121" />
+                                <path d="M32 44H36V48H32V44Z" fill="#212121" />
+                                <path d="M24 44H28V48H24V44Z" fill="#212121" />
+                                <path d="M20 44H24V48H20V44Z" fill="#212121" />
+                                <path d="M80 36H84V40H80V36Z" fill="#212121" />
+                                <path d="M16 44H20V48H16V44Z" fill="#212121" />
+                                <path d="M24 56H28V60H24V56Z" fill="#212121" />
+                                <path d="M28 56H32V60H28V56Z" fill="#212121" />
+                                <path d="M32 56H36V60H32V56Z" fill="#212121" />
+                                <path d="M36 56H40V60H36V56Z" fill="#212121" />
+                                <path d="M44 56H48V60H44V56Z" fill="#212121" />
+                                <path d="M48 56H52V60H48V56Z" fill="#212121" />
+                                <path d="M52 56H56V60H52V56Z" fill="#212121" />
+                                <path d="M56 56H60V60H56V56Z" fill="#212121" />
+                                <path d="M64 56H68V60H64V56Z" fill="#212121" />
+                                <path d="M68 56H72V60H68V56Z" fill="#212121" />
+                                <path d="M72 56H76V60H72V56Z" fill="#212121" />
+                                <path d="M76 56H80V60H76V56Z" fill="#212121" />
+                                <path d="M80 56H84V60H80V56Z" fill="#212121" />
+                                <path d="M16 64H20V68H16V64Z" fill="#212121" />
+                                <path d="M20 64H24V68H20V64Z" fill="#212121" />
+                                <path d="M24 64H28V68H24V64Z" fill="#212121" />
+                                <path d="M28 64H32V68H28V64Z" fill="#212121" />
+                                <path d="M36 64H40V68H36V64Z" fill="#212121" />
+                                <path d="M40 64H44V68H40V64Z" fill="#212121" />
+                                <path d="M44 64H48V68H44V64Z" fill="#212121" />
+                                <path d="M48 64H52V68H48V64Z" fill="#212121" />
+                                <path d="M56 64H60V68H56V64Z" fill="#212121" />
+                                <path d="M60 64H64V68H60V64Z" fill="#212121" />
+                                <path d="M64 64H68V68H64V64Z" fill="#212121" />
+                                <path d="M68 64H72V68H68V64Z" fill="#212121" />
+                                <path d="M76 64H80V68H76V64Z" fill="#212121" />
+                                <path d="M80 64H84V68H80V64Z" fill="#212121" />
+                                <path d="M16 72H20V76H16V72Z" fill="#212121" />
+                                <path d="M20 72H24V76H20V72Z" fill="#212121" />
+                                <path d="M28 72H32V76H28V72Z" fill="#212121" />
+                                <path d="M32 72H36V76H32V72Z" fill="#212121" />
+                                <path d="M36 72H40V76H36V72Z" fill="#212121" />
+                                <path d="M40 72H44V76H40V72Z" fill="#212121" />
+                                <path d="M48 72H52V76H48V72Z" fill="#212121" />
+                                <path d="M52 72H56V76H52V72Z" fill="#212121" />
+                                <path d="M56 72H60V76H56V72Z" fill="#212121" />
+                                <path d="M60 72H64V76H60V72Z" fill="#212121" />
+                                <path d="M68 72H72V76H68V72Z" fill="#212121" />
+                                <path d="M72 72H76V76H72V72Z" fill="#212121" />
+                                <path d="M76 72H80V76H76V72Z" fill="#212121" />
+                                <path d="M80 72H84V76H80V72Z" fill="#212121" />
+                                <path d="M16 80H20V84H16V80Z" fill="#212121" />
+                                <path d="M20 80H24V84H20V80Z" fill="#212121" />
+                                <path d="M24 80H28V84H24V80Z" fill="#212121" />
+                                <path d="M28 80H32V84H28V80Z" fill="#212121" />
+                                <path d="M36 80H40V84H36V80Z" fill="#212121" />
+                                <path d="M40 80H44V84H40V80Z" fill="#212121" />
+                                <path d="M44 80H48V84H44V80Z" fill="#212121" />
+                                <path d="M48 80H52V84H48V80Z" fill="#212121" />
+                                <path d="M52 80H56V84H52V80Z" fill="#212121" />
+                                <path d="M60 80H64V84H60V80Z" fill="#212121" />
+                                <path d="M64 80H68V84H64V80Z" fill="#212121" />
+                                <path d="M68 80H72V84H68V80Z" fill="#212121" />
+                                <path d="M72 80H76V84H72V80Z" fill="#212121" />
+                                <path d="M24 92H28V96H24V92Z" fill="#212121" />
+                                <path d="M28 92H32V96H28V92Z" fill="#212121" />
+                                <path d="M32 92H36V96H32V92Z" fill="#212121" />
+                                <path d="M36 92H40V96H36V92Z" fill="#212121" />
+                                <path d="M44 92H48V96H44V92Z" fill="#212121" />
+                                <path d="M48 92H52V96H48V92Z" fill="#212121" />
+                                <path d="M52 92H56V96H52V92Z" fill="#212121" />
+                                <path d="M60 92H64V96H60V92Z" fill="#212121" />
+                                <path d="M64 92H68V96H64V92Z" fill="#212121" />
+                                <path d="M72 92H76V96H72V92Z" fill="#212121" />
+                                <path d="M76 92H80V96H76V92Z" fill="#212121" />
+                                <path d="M80 92H84V96H80V92Z" fill="#212121" />
+                                <path d="M16 100H20V104H16V100Z" fill="#212121" />
+                                <path d="M20 100H24V104H20V100Z" fill="#212121" />
+                                <path d="M24 100H28V104H24V100Z" fill="#212121" />
+                                <path d="M28 100H32V104H28V100Z" fill="#212121" />
+                                <path d="M36 100H40V104H36V100Z" fill="#212121" />
+                                <path d="M40 100H44V104H40V100Z" fill="#212121" />
+                                <path d="M44 100H48V104H44V100Z" fill="#212121" />
+                                <path d="M52 100H56V104H52V100Z" fill="#212121" />
+                                <path d="M56 100H60V104H56V100Z" fill="#212121" />
+                                <path d="M60 100H64V104H60V100Z" fill="#212121" />
+                                <path d="M68 100H72V104H68V100Z" fill="#212121" />
+                                <path d="M72 100H76V104H72V100Z" fill="#212121" />
+                                <path d="M76 100H80V104H76V100Z" fill="#212121" />
+                                <path d="M80 100H84V104H80V100Z" fill="#212121" />
+                                <path d="M16 108H20V112H16V108Z" fill="#212121" />
+                                <path d="M20 108H24V112H20V108Z" fill="#212121" />
+                                <path d="M24 108H28V112H24V108Z" fill="#212121" />
+                                <path d="M32 108H36V112H32V108Z" fill="#212121" />
+                                <path d="M36 108H40V112H36V108Z" fill="#212121" />
+                                <path d="M40 108H44V112H40V108Z" fill="#212121" />
+                                <path d="M44 108H48V112H44V108Z" fill="#212121" />
+                                <path d="M48 108H52V112H48V108Z" fill="#212121" />
+                                <path d="M56 108H60V112H56V108Z" fill="#212121" />
+                                <path d="M60 108H64V112H60V108Z" fill="#212121" />
+                                <path d="M64 108H68V112H64V108Z" fill="#212121" />
+                                <path d="M68 108H72V112H68V108Z" fill="#212121" />
+                                <path d="M76 108H80V112H76V108Z" fill="#212121" />
+                                <path d="M80 108H84V112H80V108Z" fill="#212121" />
+                                <path d="M72 16H76V20H72V16Z" fill="#212121" />
+                                <path d="M72 12H76V16H72V12Z" fill="#212121" />
+                                <path d="M72 8H76V12H72V8Z" fill="#212121" />
+                                <path d="M72 4H76V8H72V4Z" fill="#212121" />
+                                <path d="M0 8H4V12H0V8Z" fill="#212121" />
+                                <path d="M0 12H4V16H0V12Z" fill="#212121" />
+                                <path d="M0 16H4V20H0V16Z" fill="#212121" />
+                                <path d="M0 20H4V24H0V20Z" fill="#212121" />
+                                <path d="M0 24H4V28H0V24Z" fill="#212121" />
+                                <path d="M0 28H4V32H0V28Z" fill="#212121" />
+                                <path d="M0 32H4V36H0V32Z" fill="#212121" />
+                                <path d="M0 36H4V40H0V36Z" fill="#212121" />
+                                <path d="M0 40H4V44H0V40Z" fill="#212121" />
+                                <path d="M0 44H4V48H0V44Z" fill="#212121" />
+                                <path d="M0 48H4V52H0V48Z" fill="#212121" />
+                                <path d="M0 52H4V56H0V52Z" fill="#212121" />
+                                <path d="M0 56H4V60H0V56Z" fill="#212121" />
+                                <path d="M0 60H4V64H0V60Z" fill="#212121" />
+                                <path d="M0 64H4V68H0V64Z" fill="#212121" />
+                                <path d="M0 68H4V72H0V68Z" fill="#212121" />
+                                <path d="M0 72H4V76H0V72Z" fill="#212121" />
+                                <path d="M0 76H4V80H0V76Z" fill="#212121" />
+                                <path d="M0 80H4V84H0V80Z" fill="#212121" />
+                                <path d="M0 84H4V88H0V84Z" fill="#212121" />
+                                <path d="M0 88H4V92H0V88Z" fill="#212121" />
+                                <path d="M0 92H4V96H0V92Z" fill="#212121" />
+                                <path d="M0 96H4V100H0V96Z" fill="#212121" />
+                                <path d="M0 100H4V104H0V100Z" fill="#212121" />
+                                <path d="M0 104H4V108H0V104Z" fill="#212121" />
+                                <path d="M0 108H4V112H0V108Z" fill="#212121" />
+                                <path d="M0 112H4V116H0V112Z" fill="#212121" />
+                                <path d="M0 116H4V120H0V116Z" fill="#212121" />
+                                <path d="M0 120H4V124H0V120Z" fill="#212121" />
+                                <path d="M0 124H4V128H0V124Z" fill="#212121" />
+                                <path d="M4 124H8V128H4V124Z" fill="#212121" />
+                            </svg>
+
+                        </figure>
+
+                        <span>CV.pdf</span>
+                    </div>
+
+                    <div className="window drag-item" ref={stacksRef} style={{ display: "block", left: "50px" }}>
+                        <div className="header-window">
+                            <div className="window-bars">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <button className="window-btn" onClick={() => {
+                                closeWindow(stacksRef);
+                            }}></button>
+
+                            <div className="window-title">
+                                <span>Stacks</span>
+                            </div>
+
+                            <button className="window-btn"></button>
+
+                        </div>
+                        <div className="content">
+                            <div className="itens">
+                                <div>
+                                    <figure id="folder" className="icon folder">
+                                        <Image src={ts} alt="ts" />
+                                    </figure>
+
+                                    <span>Typescript</span>
+                                </div>
+
+                                {/* <div>
+                                    <figure id="folder" className="icon folder">
+
+                                        <Image src={ } alt="" />
+
+                                    </figure>
+
+                                    <span>Javascript ES6+</span>
+                                </div> */}
+
+                                <div>
+                                    <figure id="folder" className="icon folder">
+
+                                        <Image src={mongo} alt="mongo" />
+
+                                    </figure>
+
+                                    <span>MongoDB</span>
+                                </div>
+
+                                {/* <div>
+                                    <figure id="folder" className="icon folder">
+
+                                        <Image src={ } alt="" />
+
+                                    </figure>
+
+                                    <span>PostgreSQL</span>
+                                </div> */}
+
+                                <div>
+                                    <figure id="folder" className="icon folder">
+                                        <Image src={aws} alt="aws" />
+
+
+                                    </figure>
+
+                                    <span>AWS</span>
+                                </div>
+
+                                <div>
+                                    <figure id="folder" className="icon folder">
+                                        <Image src={docker} alt="docker" />
+
+
+                                    </figure>
+
+                                    <span>DOCKER</span>
+                                </div>
+
+                                <div>
+                                    <figure id="folder" className="icon folder">
+                                        <Image src={jest} alt="jest" />
+
+
+                                    </figure>
+
+                                    <span>JEST</span>
+                                </div>
+
+                                <div>
+                                    <figure id="folder" className="icon folder">
+
+                                        <Image src={tail} alt="tailwind" />
+
+                                    </figure>
+
+                                    <span>Tailwind</span>
+                                </div>
+
+                                <div>
+                                    <figure id="folder" className="icon folder">
+                                        <Image src={gsap} alt="gsap" />
+
+
+                                    </figure>
+
+                                    <span>GSAP</span>
+                                </div>
+
+                                {/* <div>
+                                    <figure id="folder" className="icon folder">
+                                        <Image src={} alt="" />
+
+
+                                    </figure>
+
+                                    <span>NEXT</span>
+                                </div> */}
+
+                                <div>
+                                    <figure id="folder" className="icon folder">
+                                        <Image src={ex} alt="ex" />
+
+
+                                    </figure>
+
+                                    <span>Express</span>
+                                </div>
+
+                                {/* <div>
+                                    <figure id="folder" className="icon folder">
+                                        <Image src={ } alt="" />
+
+
+                                    </figure>
+
+                                    <span>Nest</span>
+                                </div> */}
+
+                                <div>
+                                    <figure id="folder" className="icon folder">
+                                        <Image src={react} alt="react" />
+
+
+                                    </figure>
+
+                                    <span>React</span>
+                                </div>
+
+                                <div>
+                                    <figure id="folder" className="icon folder">
+
+                                        <Image src={angular} alt="angular" />
+
+                                    </figure>
+
+                                    <span>Angular</span>
+                                </div>
+
+                                <div>
+                                    <figure id="folder" className="icon folder">
+                                        <Image src={sass} alt="sass" />
+                                    </figure>
+
+                                    <span>Sass</span>
+                                </div>
+                            </div>
+                            <div className="scroll"></div>
+                        </div>
+                        <div className="footer">
+                            <div className="scroll"></div>
+                        </div>
                     </div>
 
                     <div className="window drag-item" ref={webProjectsRef}>
@@ -583,172 +1050,6 @@ export default function System() {
                                     </figure>
 
                                     <span>Mod-UI</span>
-                                </div>
-                            </div>
-                            <div className="scroll"></div>
-                        </div>
-                        <div className="footer">
-                            <div className="scroll"></div>
-                        </div>
-                    </div>
-
-                    <div className="window drag-item" ref={stacksRef} style={{ display: "block" }}>
-                        <div className="header-window">
-                            <div className="window-bars">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-
-                            <button className="window-btn" onClick={() => {
-                                closeWindow(stacksRef);
-                            }}></button>
-
-                            <div className="window-title">
-                                <span>Stacks</span>
-                            </div>
-
-                            <button className="window-btn"></button>
-
-                        </div>
-                        <div className="content">
-                            <div className="itens">
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>Typescript</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>Javascript ES6+</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>MongoDB</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>PostgreSQL</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>AWS</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>DOCKER</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>JEST</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>Tailwind</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>GSAP</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>NEXT</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>Express</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>Nest</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>React</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>Angular</span>
-                                </div>
-
-                                <div>
-                                    <figure id="folder" className="icon folder">
-
-
-                                    </figure>
-
-                                    <span>Sass</span>
                                 </div>
                             </div>
                             <div className="scroll"></div>
