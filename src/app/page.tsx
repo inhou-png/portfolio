@@ -70,7 +70,7 @@ export default function Home() {
     ScrollTrigger.create({
       trigger: "#pin",
       start: "top top",
-      end: "+=4000px",
+      end: "+=3500px",
       pin: true,
       scrub: true,
       // markers: true,
@@ -81,7 +81,7 @@ export default function Home() {
     tlBack.fromTo("body", {
       background: "rgb(0,0,0)"
     }, {
-      background: "rgb(30,45,73)"
+      background: "rgb(22, 33, 53)"
     }, 0);
 
 
@@ -210,7 +210,7 @@ export default function Home() {
 
           .to("#desktop", { opacity: 1, duration: 0.5 });
       }
-    }, ">");
+    }, "-=0.2");
 
     Draggable.create(".tools-icon", {
       bounds: "#about",
@@ -327,14 +327,15 @@ export default function Home() {
 
       <div id="smooth-content" className="scrollbar">
         <Intro />
+        
         <div id="pin" className="flex flex-col justify-center items-center will-change-transform">
           <About />
-          <canvas id="pixel" ref={canvasRef} className="fixed" />
 
+          <canvas id="pixel" ref={canvasRef} className="fixed" />
+          
           <Projects />
         </div>
       </div>
-
 
       <div id='test-os'>
         <System />
