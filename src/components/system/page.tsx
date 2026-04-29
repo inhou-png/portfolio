@@ -72,7 +72,7 @@ export default function System() {
                             </svg>
                         </figure>
 
-                        <span>Projetos Web</span>
+                        <span>Projects Web</span>
                     </div>
 
                     <div className="drag-item" onClick={() => {
@@ -551,7 +551,7 @@ export default function System() {
                             }}></button>
 
                             <div className="window-title">
-                                <span>Projetos Web</span>
+                                <span>Projects Web</span>
                             </div>
 
                             <button className="window-btn"></button>
