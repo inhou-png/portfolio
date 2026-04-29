@@ -175,7 +175,8 @@ export default function About() {
 
                 <p className='leading-relaxed w-[35dvw] text-gray-300 text-[1.3dvw]'>
                     {/* Curto criar soluções limpas e reutilizáveis. Nos últimos anos, tenho me concentrado em tecnologias JavaScript, incluindo React, TypeScript, bem como ferramentas como Tailwind CSS e styled-components. Também tenho experiência em Next.js, Angular 2+, Sass e Stylus. Sempre aplico boas práticas de desenvolvimento para garantir a eficácia e a facilidade de manutenção do meu código. */}
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eveniet similique accusantium provident soluta ex neque eum, repellat ullam, at, tenetur voluptatibus eligendi consequatur eos ut quae possimus deleniti assumenda?
+                    {/* I have a bachelor's degree in Computer Science, I've been working as a developer for 4 years, and I love solving logic puzzles. Oh, and I have a dog named Zeca. */}
+                    I have a bachelor's degree in Computer Science, I've been working as a developer for 4 years, and I love solving logic puzzles, as well as valuing good design and well-built interfaces. Oh, and I have a dog named Zeca.
                 </p>
 
                 <Image src={moon} alt='moon' className='w-[50dvw] absolute top-[50dvh]' id='moon' />
