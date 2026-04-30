@@ -24,7 +24,7 @@ export default function Intro() {
                             <Image alt='Waving Hand' src={Waving_Hand} className='inline w-[1.5ch] h-[1.5ch] ml-[0.5ch] align-center' />
                         </strong>
                     </h1>
-                    <h3 className='text-base text-[24px] mb-5'>I'm a Full-Stack developer from São Paulo/Brazil.</h3>
+                    <h3 className='text-[24px] mb-5'>I'm a Full-Stack developer from São Paulo/Brazil.</h3>
                     <div className='flex md:justify-start justify-center'>
                         <Link href="https://github.com/inhou-png" target='_blank'>
                             <Image alt='GitHub' src={GitHub} className='md:w-9 xl:w-10 mr-6 w-8 hover:opacity-70 transition-all cursor-pointer' />
