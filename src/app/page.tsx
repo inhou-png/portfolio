@@ -78,11 +78,11 @@ export default function Home() {
     })
 
     //background
-    tlBack.fromTo("body", {
-      background: "rgb(0,0,0)"
-    }, {
-      background: "rgb(22, 33, 53)"
-    }, 0);
+    // tlBack.fromTo("body", {
+    //   background: "rgb(0,0,0)"
+    // }, {
+    //   background: "rgb(22, 33, 53)"
+    // }, 0);
 
 
     const cv = canvasRef.current;

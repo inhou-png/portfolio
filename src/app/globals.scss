@@ -65,15 +65,15 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items:flex-start;
     // border-top: dashed 2px red;
     // border-bottom: dashed 2px red;
     box-sizing: border-box;
 
     #about {
+        margin-top: 12dvh;
         // border-top: dashed 2px red;
-
     }
 }
 

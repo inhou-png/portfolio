@@ -167,7 +167,7 @@ export default function About() {
 
     return (
         <div id='about' className='flex justify-center items-center w-[100%] relative'>
-            <div id="text-about" className='relative flex flex-col gap-[25px]'>
+            <div id="text-about" className='relative flex flex-col gap-[25px] h-[100%]'>
                 <h1 className="text-[5dvw] font-bold w-[250px] leading-[4dvw] text-white">
                     ABOUT
                     <span className='block text-[DeepPink]'>ME</span>

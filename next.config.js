@@ -5,7 +5,7 @@ const nextConfig = {
     },
     output: "export",  // <=== enables static export
     reactStrictMode: false,
-    // basePath: '/portfolio'
+    basePath: '/portfolio'
 }
 
 module.exports = nextConfig
