@@ -40,7 +40,7 @@
     * {
         font-family: 'Geneva', system-ui, sans-serif;
         font-family: 'Pixel';
-        font-family: 'Pixelify Sans';
+        font-family: 'Pixelify Sans' !important;
     }
 
     *::-webkit-scrollbar {
@@ -67,8 +67,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: dashed 2px red;
-    border-bottom: dashed 2px red;
+    // border-top: dashed 2px red;
+    // border-bottom: dashed 2px red;
     box-sizing: border-box;
 }
 
