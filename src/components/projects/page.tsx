@@ -56,8 +56,7 @@ export default function Projects() {
 
         const loader = new GLTFLoader();
 
-        loader.load(
-            "/macintosh/scene.gltf",
+        loader.load("/portfolio/macintosh/scene.gltf",
             (gltf) => {
                 const model = gltf.scene;
 

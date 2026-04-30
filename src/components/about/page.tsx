@@ -39,7 +39,7 @@ export default function About() {
             trigger: "#about",
             // pin: true,
             // end: "+=4000px",
-            markers: true,
+            // markers: true,
             animation: tl,
         });
 
@@ -104,9 +104,9 @@ export default function About() {
 
         const textureLoader = new THREE.TextureLoader();
         const textures = [
-            textureLoader.load("/Head/face5.jpeg"),
-            textureLoader.load("/Head/face6.jpeg"),
-            textureLoader.load("/Head/face7.jpeg"),
+            textureLoader.load("/portfolio/Head/face5.jpeg"),
+            textureLoader.load("/portfolio/Head/face6.jpeg"),
+            textureLoader.load("/portfolio/Head/face7.jpeg"),
         ];
 
         textures.forEach((t) => {
