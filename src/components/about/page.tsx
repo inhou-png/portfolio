@@ -114,7 +114,7 @@ export default function About() {
             t.colorSpace = THREE.SRGBColorSpace;
         });
 
-        loader.load("/Head/Head.gltf", (gltf) => {
+        loader.load("/portfolio/Head/Head.gltf", (gltf) => {
             clearInterval(intervalId.current);
 
             const model = gltf.scene;
