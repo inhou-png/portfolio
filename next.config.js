@@ -4,7 +4,8 @@ const nextConfig = {
         unoptimized: true
     },
     output: "export",  // <=== enables static export
-    reactStrictMode: false
+    reactStrictMode: false,
+    basePath: '/portfolio'
 }
 
 module.exports = nextConfig
