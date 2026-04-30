@@ -182,7 +182,7 @@ export default function About() {
                 <Image src={moon} alt='moon' className='w-[50dvw] absolute top-[50dvh]' id='moon' />
             </div>
 
-            <div id="3d-about" className='w-[90%] md:w-[30%] order-1 md:order-2 md:ml-10 mb-10 md:mb-0 flex justify-center about-media-head'>
+            <div id="3d-about" className='w-[90%] md:w-[30%] order-1 md:order-2 md:ml-10 flex justify-center about-media-head'>
                 <div className='three-head' id='head'></div>
                 {/* <Image alt='Face' src={face} className='w-[70%] h-auto md:w-[80%]' /> */}
             </div>
